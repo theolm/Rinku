@@ -1,9 +1,8 @@
 import config.Config
-import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.get
 
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
 }
 
 android {
@@ -21,27 +20,5 @@ android {
     compileOptions {
         sourceCompatibility = Config.javaVersion
         targetCompatibility = Config.javaVersion
-    }
-
-}
-
-kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = Config.javaVersion.toString()
-            }
-        }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
     }
 }

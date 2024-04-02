@@ -1,4 +1,4 @@
-rootProject.name = "kmm-template"
+rootProject.name = "Rinku"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -20,6 +20,6 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":composeApp",
-    ":api-client"
+    ":samples:sample",
+    ":rinku-core"
 )
