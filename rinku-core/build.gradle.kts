@@ -11,6 +11,17 @@ android {
 
 
 kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "17"
+            }
+        }
+    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)

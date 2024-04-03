@@ -1,9 +1,20 @@
 plugins {
-    id("android-application-setup")
-    id("compose-module-setup")
+    id("sample-setup")
 }
 
 kotlin {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            export(projects.rinku.rinkuCore)
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
@@ -15,11 +26,9 @@ kotlin {
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
         }
-    }
-}
 
-android {
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
+        iosMain.dependencies {
+            api(projects.rinku.rinkuCore)
+        }
     }
 }
