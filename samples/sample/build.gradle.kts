@@ -11,9 +11,9 @@ kotlin {
         }
 
         commonMain.dependencies {
+            implementation(projects.rinku.rinkuCore)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
-            implementation(libs.voyager.koin)
         }
     }
 }

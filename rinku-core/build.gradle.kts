@@ -12,10 +12,12 @@ android {
 
 kotlin {
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
         commonMain.dependencies {
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
-            implementation(libs.voyager.koin)
         }
     }
 }

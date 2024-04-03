@@ -25,7 +25,6 @@ kotlin {
         }
     }
 
-    val libs = the<LibrariesForLibs>()
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
