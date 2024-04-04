@@ -5,6 +5,8 @@ compose = "1.6.4"
 compose-plugin = "1.6.1"
 kotlin = "1.9.23"
 voyager = "1.0.0"
+ktor = "2.3.9"
+uri = "0.0.18"
 
 
 [libraries]
@@ -16,7 +18,8 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-plugin" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
-
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+uri = { module = "com.eygraber:uri-kmp", version.ref = "uri" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

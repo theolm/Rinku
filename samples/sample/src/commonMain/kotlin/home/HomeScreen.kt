@@ -4,11 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.model.rememberScreenModel
@@ -27,10 +25,20 @@ class HomeScreen : Screen {
         ) {
             Column(
                 modifier = Modifier.fillMaxSize().padding(32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
             ) {
-                Text("Deep link: ${uiState.deepLink}")
+                uiState.deepLink?.let {
+                    Text("URI: ${it.uri}")
+                    Text("host: ${it.host}")
+                    Text("Path: ${it.path}")
+                    Text("Path List: ${it.pathSegments}")
+                    Text("Query: ${it.query}")
+                    Text("encoded Query: ${it.encodedQuery}")
+                    Text("Query map: ${it.parameters}")
+                } ?: run {
+                    Text("No deep link received")
+                }
+
             }
         }
 
