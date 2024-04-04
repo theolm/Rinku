@@ -1,17 +1,20 @@
 package home
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.core.model.ScreenModel
+import dev.theolm.rinku.DeepLink
 
 class HomeScreenModel() : ScreenModel {
     val uiState = mutableStateOf(UiState())
 
-    init {
-        uiState.value = uiState.value.copy(message = "")
+
+    fun onDeepLinkReceived(deepLink: DeepLink) {
+        uiState.value = uiState.value .copy(deepLink = deepLink)
     }
 
     data class UiState(
-        val showContent: Boolean = false,
-        val message : String = ""
+        val deepLink: DeepLink? = null,
     )
 }
