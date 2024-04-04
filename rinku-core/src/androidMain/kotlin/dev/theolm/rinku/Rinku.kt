@@ -8,8 +8,14 @@ import androidx.core.util.Consumer
 
 @Composable
 fun ComponentActivity.Rinku(content: @Composable () -> Unit) {
+    intent.dataString?.let {
+        println("Initial deeplink: $it")
+        Rinku.handleDeepLink(it)
+    }
+
     DisposableEffect(Unit) {
         val listener = Consumer<Intent> {
+            println("Received new intent: $it")
             it?.dataString?.let {
                 Rinku.handleDeepLink(it)
             }

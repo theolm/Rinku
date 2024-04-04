@@ -1,4 +1,4 @@
-package home
+package screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,20 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import components.DemoScaffold
-import dev.theolm.rinku.DeepLinkListener
+import dev.theolm.rinku.DeepLink
 
-class HomeScreen : Screen {
+class FirstScreen(private val deepLink: DeepLink? = null) : Screen {
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { HomeScreenModel() }
-        val uiState by screenModel.uiState
-
         DemoScaffold(
             title = "Home"
         ) {
@@ -27,7 +22,7 @@ class HomeScreen : Screen {
                 modifier = Modifier.fillMaxSize().padding(32.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
-                uiState.deepLink?.let {
+                deepLink?.let {
                     Text("URI: ${it.uri}")
                     Text("host: ${it.host}")
                     Text("Path: ${it.path}")
@@ -38,12 +33,7 @@ class HomeScreen : Screen {
                 } ?: run {
                     Text("No deep link received")
                 }
-
             }
-        }
-
-        DeepLinkListener {
-            screenModel.onDeepLinkReceived(it)
         }
     }
 }

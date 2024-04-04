@@ -20,6 +20,6 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":samples:sample",
+    ":samples:voyager",
     ":rinku-core"
 )
