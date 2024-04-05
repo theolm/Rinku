@@ -2,27 +2,16 @@ import config.Config
 
 plugins {
     id("sample-setup")
+    id("kotlin-parcelize")
 }
 
 android {
     defaultConfig {
-        applicationId = Config.applicationId + ".voyager"
+        applicationId = Config.applicationId + ".decompose"
     }
 }
 
 kotlin {
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            export(projects.rinku.rinkuCore)
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
@@ -31,8 +20,8 @@ kotlin {
 
         commonMain.dependencies {
             implementation(projects.rinku.rinkuCore)
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.screenModel)
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
         }
 
         iosMain.dependencies {

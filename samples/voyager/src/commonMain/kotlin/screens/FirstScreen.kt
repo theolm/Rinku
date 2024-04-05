@@ -16,7 +16,7 @@ class FirstScreen(private val deepLink: DeepLink? = null) : Screen {
     @Composable
     override fun Content() {
         DemoScaffold(
-            title = "Home"
+            title = "Voyager sample"
         ) {
             Column(
                 modifier = Modifier.fillMaxSize().padding(32.dp),

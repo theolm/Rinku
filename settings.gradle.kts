@@ -21,5 +21,6 @@ dependencyResolutionManagement {
 
 include(
     ":samples:voyager",
+    ":samples:decompose",
     ":rinku-core"
 )

@@ -41,7 +41,6 @@ android {
     }
 }
 
-var iosTargets = listOf<KotlinNativeTarget>()
 kotlin {
     androidTarget {
         compilations.all {
@@ -50,11 +49,6 @@ kotlin {
             }
         }
     }
-
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
 
     sourceSets {
         commonMain.dependencies {

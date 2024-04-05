@@ -18,26 +18,33 @@ import screens.FirstScreen
 
 @Composable
 fun App() {
-    var screenStack by remember { mutableStateOf(ScreenStack()) }
+    var deepLink by remember { mutableStateOf<DeepLink?>(null) }
 
-    LaunchedEffect(screenStack) {
-        println("screenStack ${screenStack.screens}")
+    DeepLinkListener {
+        deepLink = it
     }
+
+    MainScreen(deepLink)
+}
+
+@Composable
+private fun MainScreen(deepLink: DeepLink?) {
+    val screenStack = buildScreenStack(deepLink)
 
     MaterialTheme {
         Navigator(
-            screens = screenStack.screens,
+            screens = screenStack,
+            key = deepLink?.hashCode()?.toString() ?: "null"
         )
-    }
-
-    DeepLinkListener {
-        screenStack = buildScreenStack(it)
     }
 }
 
 
+private fun buildScreenStack(deepLink: DeepLink?): List<Screen> {
+    if (deepLink == null) {
+        return listOf(FirstScreen(deepLink))
+    }
 
-private fun buildScreenStack(deepLink: DeepLink): ScreenStack {
     val screenPaths = deepLink.pathSegments.mapNotNull {
         when (it) {
             "second" -> SecondScreen()
@@ -47,7 +54,5 @@ private fun buildScreenStack(deepLink: DeepLink): ScreenStack {
         }
     }
 
-    return ScreenStack(listOf(FirstScreen()) + screenPaths)
+    return listOf(FirstScreen(deepLink)) + screenPaths
 }
-
-class ScreenStack(val screens: List<Screen> = listOf(FirstScreen()))
