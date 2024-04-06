@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package dev.theolm.rinku
 
 import androidx.compose.runtime.Composable
@@ -5,7 +7,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-
 
 object Rinku {
     internal var deepLinkState by mutableStateOf<DeepLink?>(null)
