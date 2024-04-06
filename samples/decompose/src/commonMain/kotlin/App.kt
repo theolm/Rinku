@@ -11,6 +11,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import components.toScreenStack
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.DeepLinkListener
 import screens.FourthScreen
@@ -43,7 +44,7 @@ fun App() {
  */
 @Composable
 private fun MainScreen(deepLink: DeepLink?) {
-    val screenStack = buildScreenStack(deepLink)
+    val screenStack = deepLink.toScreenStack()
     val component = remember(screenStack) {
         AppComponentImpl(
             initialStack = screenStack,
@@ -72,27 +73,5 @@ private fun MainScreen(deepLink: DeepLink?) {
                 }
             }
         }
-    }
-}
-
-/**
- * Builds a screen stack based on the deep link.
- * If the deep link is null, the stack will contain only the first screen.
- * If the deep link is not null, the stack will contain the first screen and the screens specified in the deep link.
- */
-private fun buildScreenStack(deepLink: DeepLink?): List<Config> {
-    return if (deepLink == null) {
-        listOf(Config.First)
-    } else {
-        val screenPaths = deepLink.pathSegments.mapNotNull {
-            when (it) {
-                "second" -> Config.Second
-                "third" -> Config.Third
-                "fourth" -> Config.Fourth
-                else -> null
-            }
-        }
-
-        listOf(Config.First) + screenPaths
     }
 }

@@ -1,4 +1,3 @@
-import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
@@ -8,6 +7,9 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 
+/**
+ * This class only contains functions related to Decompose
+ */
 interface AppComponent {
     val stack: Value<ChildStack<*, Screen>>
 
@@ -27,6 +29,10 @@ class AppComponentImpl(
 ) : AppComponent, ComponentContext by componentContext {
     private val navigation = StackNavigation<Config>()
 
+    /**
+     * The key aspect of deeplinks in Decompose is to replace the initialStack with the deeplink
+     * screen stack
+     */
     override val stack: Value<ChildStack<*, AppComponent.Screen>> =
         childStack(
             source = navigation,
@@ -54,8 +60,12 @@ class AppComponentImpl(
 
 @Parcelize // kotlin-parcelize plugin must be applied if you are targeting Android
 sealed interface Config : Parcelable {
+    @Parcelize //
     data object First : Config
+    @Parcelize //
     data object Second : Config
+    @Parcelize //
     data object Third : Config
+    @Parcelize //
     data object Fourth : Config
 }
