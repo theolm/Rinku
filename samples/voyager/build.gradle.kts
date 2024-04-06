@@ -27,13 +27,9 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(projects.rinku.rinkuCore)
+            api(projects.rinku.rinkuCore)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
-        }
-
-        iosMain.dependencies {
-            api(projects.rinku.rinkuCore)
         }
     }
 }

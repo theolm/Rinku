@@ -30,9 +30,5 @@ kotlin {
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
         }
-
-        iosMain.dependencies {
-            api(projects.rinku.rinkuCore)
-        }
     }
 }
