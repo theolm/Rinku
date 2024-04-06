@@ -9,7 +9,10 @@ object Config {
     const val compileSdk = 34
     const val versionCode = 1
     const val versionName = "1.0.0"
-    const val packageVersion = versionName
-
     val javaVersion = JavaVersion.VERSION_17
+
+    // Libraries versions
+    const val artifactId = "rinku"
+    const val groupId = "dev.theolm"
+    const val libVersion = "0.0.1"
 }

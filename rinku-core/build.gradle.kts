@@ -5,14 +5,13 @@ import plugins.setupKmpTargets
 plugins {
     id("android-lib-setup")
     id("compose-module-setup")
-//    id("publish-setup")
+    id("publish-setup")
     id("detekt-setup")
 }
 
 android {
     namespace = Config.applicationId
 }
-
 
 kotlin {
     setupKmpTargets()
@@ -27,19 +26,19 @@ kotlin {
     }
 }
 
-//mavenPublishing {
-//    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-//    signAllPublications()
-//
-//    val version = System.getenv("VERSION") ?: Config.libVersion
-//    coordinates(
-//        groupId = Config.groupId,
-//        artifactId = artifactId,
-//        version = version
-//    )
-//
-//    pom {
-//        name.set("Txt Log Writer")
-//        description.set("It's a simple Kermit log writer that writes logs to a text file.")
-//    }
-//}
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+
+    val version = System.getenv("VERSION") ?: Config.libVersion
+    coordinates(
+        groupId = Config.groupId,
+        artifactId = Config.artifactId,
+        version = version
+    )
+
+    pom {
+        name.set("Rinku")
+        description.set("Deep Link Handling for Kotlin Multiplatform.")
+    }
+}

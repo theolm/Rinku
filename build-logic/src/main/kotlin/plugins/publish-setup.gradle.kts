@@ -5,7 +5,7 @@ plugins {
 mavenPublishing {
     pom {
         inceptionYear.set("2024")
-        url.set("https://github.com/theolm/kermit-extensions")
+        url.set("https://github.com/theolm/Rinku")
         licenses {
             license {
                 name.set("MIT License")
@@ -21,9 +21,9 @@ mavenPublishing {
             }
         }
         scm {
-            url.set("https://github.com/theolm/kermit-extensions/")
-            connection.set("scm:git:git://github.com/theolm/kermit-extensions.git")
-            developerConnection.set("scm:git:ssh://git@github.com/theolm/kermit-extensions.git")
+            url.set("https://github.com/theolm/Rinku/")
+            connection.set("scm:git:git://github.com/theolm/Rinku.git")
+            developerConnection.set("scm:git:ssh://git@github.com/theolm/Rinku.git")
         }
     }
 }
