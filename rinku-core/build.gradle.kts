@@ -1,4 +1,5 @@
 import config.Config
+import plugins.setupKmpTargets
 
 plugins {
     id("android-lib-setup")
@@ -11,16 +12,7 @@ android {
 
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
-        }
-    }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    setupKmpTargets()
 
     sourceSets {
         androidMain.dependencies {

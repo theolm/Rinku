@@ -1,4 +1,5 @@
 import config.Config
+import plugins.setupKmpTargets
 
 plugins {
     id("sample-setup")
@@ -11,17 +12,13 @@ android {
 }
 
 kotlin {
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            export(projects.rinku.rinkuCore)
-            baseName = "ComposeApp"
-            isStatic = true
+    setupKmpTargets(
+        onBinariesFramework = {
+            it.export(projects.rinku.rinkuCore)
+            it.baseName = "ComposeApp"
+            it.isStatic = true
         }
-    }
+    )
 
     sourceSets {
         androidMain.dependencies {

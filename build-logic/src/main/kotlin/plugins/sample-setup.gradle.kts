@@ -42,14 +42,6 @@ android {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)

@@ -12,6 +12,13 @@ android {
 }
 
 kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = Config.javaVersion.toString()
+            }
+        }
+    }
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
