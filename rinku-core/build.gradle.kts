@@ -23,6 +23,12 @@ kotlin {
         commonMain.dependencies {
             api(libs.uri)
         }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.kotlin.test.common)
+            implementation(libs.kotlin.test.annotation)
+            implementation(libs.kotlinx.coroutines.test)
+        }
     }
 }
 
