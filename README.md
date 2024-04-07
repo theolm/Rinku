@@ -42,14 +42,14 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             // Export of Rinku library to the iOS framework
-            export("dev.theolm.rinku:<latest_version>")
+            export("dev.theolm:rinku:<latest_version>")
             ...
         }
     }
     ...
     sourceSets {
         commonMain.dependencies {
-            api("dev.theolm.rinku:<latest_version>")
+            api("dev.theolm:rinku:<latest_version>")
         }
     }
 }
