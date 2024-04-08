@@ -45,6 +45,7 @@ class AppComponentImpl(
             childFactory = ::child,
         )
 
+    @Suppress("UnusedParameter")
     private fun child(config: Config, componentContext: ComponentContext): AppComponent.Screen =
         when (config) {
             Config.First -> AppComponent.Screen.First
@@ -62,10 +63,13 @@ class AppComponentImpl(
 sealed interface Config : Parcelable {
     @Parcelize //
     data object First : Config
+
     @Parcelize //
     data object Second : Config
+
     @Parcelize //
     data object Third : Config
+
     @Parcelize //
     data object Fourth : Config
 }

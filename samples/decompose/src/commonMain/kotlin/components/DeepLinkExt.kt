@@ -1,6 +1,5 @@
 package components
 
-
 import Config
 import dev.theolm.rinku.DeepLink
 

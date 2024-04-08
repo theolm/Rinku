@@ -14,7 +14,6 @@ import components.DemoScaffold
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.Rinku
 
-
 @Composable
 fun FirstScreen(deepLink: DeepLink? = null) {
     DemoScaffold(

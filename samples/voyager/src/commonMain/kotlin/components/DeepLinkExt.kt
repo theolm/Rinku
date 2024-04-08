@@ -7,7 +7,7 @@ import screens.FourthScreen
 import screens.SecondScreen
 import screens.ThirdScreen
 
-fun DeepLink?.toScreenStack() : List<Screen> {
+fun DeepLink?.toScreenStack(): List<Screen> {
     if (this == null) {
         return listOf(FirstScreen(this))
     }

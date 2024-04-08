@@ -36,7 +36,7 @@ fun DemoScaffold(
                     }
                 },
 
-                )
+            )
         },
         content = content
     )

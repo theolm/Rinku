@@ -14,11 +14,10 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import components.toScreenStack
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.compose.ext.DeepLinkListener
+import screens.FirstScreen
 import screens.FourthScreen
 import screens.SecondScreen
 import screens.ThirdScreen
-import screens.FirstScreen
-
 
 /**
  * Main entry point of the app.

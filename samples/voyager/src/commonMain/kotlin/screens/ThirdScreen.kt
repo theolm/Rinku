@@ -7,7 +7,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import components.DemoScaffold
 
-class ThirdScreen() : Screen  {
+class ThirdScreen : Screen {
 
     @Composable
     override fun Content() {

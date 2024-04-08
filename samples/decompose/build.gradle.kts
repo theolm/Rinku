@@ -3,6 +3,7 @@ import config.Config
 plugins {
     id("sample-setup")
     id("kotlin-parcelize")
+    id("detekt-setup")
 }
 
 android {

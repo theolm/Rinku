@@ -3,6 +3,7 @@ import plugins.setupKmpTargets
 
 plugins {
     id("sample-setup")
+    id("detekt-setup")
 }
 
 android {
