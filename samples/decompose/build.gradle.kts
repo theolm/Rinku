@@ -27,6 +27,7 @@ kotlin {
 
         commonMain.dependencies {
             implementation(projects.rinku.rinkuCore)
+            implementation(projects.rinku.rinkuComposeExt)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
         }

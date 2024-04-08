@@ -10,21 +10,21 @@ import kotlinx.coroutines.launch
 
 object Rinku {
     private val rinkuScope = MainScope()
-    internal var deepLinkState = MutableStateFlow<DeepLink?>(null)
+    internal var deepLinkFlow = MutableStateFlow<DeepLink?>(null)
         private set
 
     fun handleDeepLink(url: String) {
         rinkuScope.launch {
-            deepLinkState.emit(DeepLink(url))
+            deepLinkFlow.emit(DeepLink(url))
         }
     }
 
-    internal fun consumeDeepLink(): DeepLink? = deepLinkState.getAndUpdate { null }
+    internal fun consumeDeepLink(): DeepLink? = deepLinkFlow.getAndUpdate { null }
 
 }
 
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {
-    Rinku.deepLinkState.filterNotNull().collect {
+    Rinku.deepLinkFlow.filterNotNull().collect {
         Rinku.consumeDeepLink()?.let(listener)
     }
 }

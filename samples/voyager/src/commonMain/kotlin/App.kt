@@ -1,23 +1,14 @@
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import components.toScreenStack
 import dev.theolm.rinku.DeepLink
-import dev.theolm.rinku.DeepLinkListener
-import screens.FourthScreen
-import screens.SecondScreen
-import screens.ThirdScreen
+import dev.theolm.rinku.compose.ext.DeepLinkListener
 import screens.FirstScreen
 
 /**

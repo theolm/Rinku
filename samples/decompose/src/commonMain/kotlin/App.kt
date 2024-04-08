@@ -13,7 +13,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import components.toScreenStack
 import dev.theolm.rinku.DeepLink
-import dev.theolm.rinku.DeepLinkListener
+import dev.theolm.rinku.compose.ext.DeepLinkListener
 import screens.FourthScreen
 import screens.SecondScreen
 import screens.ThirdScreen

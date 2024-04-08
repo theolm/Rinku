@@ -9,7 +9,7 @@ import dev.theolm.rinku.DeepLink
  * If the deep link is null, the stack will contain only the first screen.
  * If the deep link is not null, the stack will contain the first screen and the screens specified in the deep link.
  */
-fun DeepLink?.toScreenStack() : List<Config> {
+fun DeepLink?.toScreenStack(): List<Config> {
     if (this == null) {
         return listOf(Config.First)
     }
