@@ -1,6 +1,7 @@
 [versions]
 agp = "8.1.4"
 androidx-activityCompose = "1.8.2"
+activity-ktx = "1.8.2"
 compose = "1.6.4"
 compose-plugin = "1.6.1"
 kotlin = "1.9.23"
@@ -16,12 +17,14 @@ coroutines = "1.8.0"
 
 [libraries]
 android-buildTools = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines"}
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-test-common = { module = "org.jetbrains.kotlin:kotlin-test-common", version.ref = "kotlin" }
 kotlin-test-annotation = { module = "org.jetbrains.kotlin:kotlin-test-annotations-common", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlin_gradle_plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-plugin" }
@@ -35,6 +38,7 @@ gradleMavenPublish-gradlePlugin = { module = "com.vanniktech.maven.publish:com.v
 detekt-gradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detekt-composeRules = { module = "ru.kode:detekt-rules-compose", version.ref = "composeRules" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -4,7 +4,7 @@ import plugins.setupKmpTargets
 
 plugins {
     id("android-lib-setup")
-    id("compose-module-setup")
+    id("org.jetbrains.kotlin.multiplatform")
     id("publish-setup")
     id("detekt-setup")
 }
@@ -18,10 +18,11 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.activity.ktx)
         }
         commonMain.dependencies {
             api(libs.uri)
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

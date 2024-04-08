@@ -2,31 +2,29 @@
 
 package dev.theolm.rinku
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.getAndUpdate
+import kotlinx.coroutines.launch
 
 object Rinku {
-    internal var deepLinkState by mutableStateOf<DeepLink?>(null)
+    private val rinkuScope = MainScope()
+    internal var deepLinkState = MutableStateFlow<DeepLink?>(null)
         private set
 
     fun handleDeepLink(url: String) {
-        deepLinkState = DeepLink(url)
+        rinkuScope.launch {
+            deepLinkState.emit(DeepLink(url))
+        }
     }
 
-    internal fun consumeDeepLink(): DeepLink? =
-        deepLinkState?.also {
-            deepLinkState = null
-        }
+    internal fun consumeDeepLink(): DeepLink? = deepLinkState.getAndUpdate { null }
+
 }
 
-@Composable
-fun DeepLinkListener(listener: (DeepLink) -> Unit) {
-    LaunchedEffect(Rinku.deepLinkState) {
-        Rinku.consumeDeepLink()?.let {
-            listener.invoke(it)
-        }
+suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {
+    Rinku.deepLinkState.filterNotNull().collect {
+        Rinku.consumeDeepLink()?.let(listener)
     }
 }
