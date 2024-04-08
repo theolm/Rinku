@@ -20,7 +20,6 @@ object Rinku {
     }
 
     internal fun consumeDeepLink(): DeepLink? = deepLinkFlow.getAndUpdate { null }
-
 }
 
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {
