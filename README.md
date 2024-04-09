@@ -98,9 +98,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-           Rinku {
-               App()
-           }
+            Rinku {
+                App()
+            }
         }
     }
 }
@@ -160,11 +160,11 @@ class AppComponentImpl(
     private val navigation = StackNavigation<Config>()
 
     init {
-        launch { initDeepLinkListener() } 
+        launch { initDeepLinkListener() }
     }
 
     private suspend fun initDeepLinkListener() {
-        listenForDeepLinks { 
+        listenForDeepLinks {
             navigation.replaceAll(
                 *it.toScreenStack().toTypedArray()
             )
@@ -174,6 +174,19 @@ class AppComponentImpl(
 
 ```
 
+### Firing Internal Deep Links with Rinku
+Rinku simplifies the process of triggering internal deep links directly from your common Kotlin Multiplatform (KMP) code. This feature allows you to easily navigate within your application using a unified approach across all platforms.
+
+#### Triggering a Deep Link
+To invoke an internal deep link within your application, use the handleDeepLink method provided by Rinku. This method accepts a single parameter: the URL of the deep link you wish to trigger.
+
+```kt
+Rinku.handleDeepLink("https://test.deeplink/path?query=true")
+```
+In this example, https://test.deeplink/path?query=true represents the URL of the deep link. The URL scheme, path, and query parameters should be replaced with values that are relevant to your application's routing structure.
+
+By leveraging Rinku's handleDeepLink method, you can enhance your application's navigation capabilities, making it easier to programmatically direct users to specific areas of your app from shared KMP code.
+
 
 ## Demonstrative Samples
 The library includes two illustrative examples utilizing the foremost multiplatform navigation libraries: [Voyager](https://voyager.adriel.cafe/) and [Decompose](https://github.com/arkivanov/Decompose)
@@ -182,6 +195,7 @@ The library includes two illustrative examples utilizing the foremost multiplatf
 - [Decompose sample](https://github.com/theolm/Rinku/tree/main/samples/decompose)
 
 *Note: Only the Voyager sample includes an iOS application. Nonetheless, the setup for Decompose would mirror that of Voyager.*
+
 *Note 2: Both examples are using Compose multiplatform.*
 
 ## License
