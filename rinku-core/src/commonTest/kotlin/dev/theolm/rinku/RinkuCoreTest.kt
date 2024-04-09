@@ -1,41 +1,98 @@
 package dev.theolm.rinku
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestCoroutineScheduler
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
-import kotlin.test.DefaultAsserter.assertEquals
-import kotlin.test.DefaultAsserter.assertNull
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class RinkuCoreTest {
+    private val testDispatcher = StandardTestDispatcher(TestCoroutineScheduler())
 
     @BeforeTest
     fun setUp() {
+        Dispatchers.setMain(testDispatcher)
         // Ensuring Rinku is reset before each test
         Rinku.consumeDeepLink() // Consume any existing deep link to reset
     }
 
-    @Test
-    fun `handleDeepLink sets deepLinkState`() {
-        val testUrl = "https://test.com"
-        Rinku.handleDeepLink(testUrl)
-
-        assertEquals("Deep link state was not set correctly.", DeepLink(testUrl), Rinku.consumeDeepLink())
+    @AfterTest
+    fun teardownDispatchers() {
+        Dispatchers.resetMain()
     }
 
     @Test
-    fun `consumeDeepLink returns and clears deepLinkState`() {
+    fun `handleDeepLink sets deepLinkState`() = runTest(testDispatcher) {
         val testUrl = "https://test.com"
         Rinku.handleDeepLink(testUrl)
+        advanceUntilIdle()
+
+        assertEquals(
+            expected = DeepLink(testUrl),
+            actual = Rinku.consumeDeepLink(),
+            message = "Deep link state was not set correctly.",
+        )
+    }
+
+    @Test
+    fun `consumeDeepLink returns and clears deepLinkState`() = runTest(testDispatcher) {
+        val testUrl = "https://test.com"
+        Rinku.handleDeepLink(testUrl)
+        advanceUntilIdle()
 
         // Consume the deep link
         val consumedLink = Rinku.consumeDeepLink()
-        assertEquals("Consumed deep link did not match.", DeepLink(testUrl), consumedLink)
+        assertEquals(
+            expected = DeepLink(testUrl),
+            actual = consumedLink,
+            message = "Consumed deep link did not match."
+        )
 
         // Ensure deepLinkState is cleared
-        assertNull("deepLinkState was not cleared after consumption.", Rinku.consumeDeepLink())
+        assertNull(
+            actual = Rinku.consumeDeepLink(),
+            message = "deepLinkState was not cleared after consumption."
+        )
     }
 
     @Test
-    fun `consumeDeepLink returns null when no deepLink is set`() {
-        assertNull("consumeDeepLink should return null when no deepLink is set.", Rinku.consumeDeepLink())
+    fun `consumeDeepLink returns null when no deepLink is set`() = runTest(testDispatcher) {
+        advanceUntilIdle()
+
+        assertNull(
+            actual = Rinku.consumeDeepLink(),
+            message = "consumeDeepLink should return null when no deepLink is set."
+        )
     }
+
+    @Test
+    fun `on handleDeepLink expects listenForDeepLinks receive a deeplink`() =
+        runTest(testDispatcher) {
+            val testUrl = "https://test.com"
+            var receivedDeepLink: DeepLink? = null
+
+            val job = launch {
+                listenForDeepLinks { receivedDeepLink = it }
+            }
+
+            Rinku.handleDeepLink(testUrl)
+            advanceUntilIdle()
+            job.cancel()
+
+            assertEquals(
+                expected = DeepLink(testUrl),
+                actual = receivedDeepLink,
+                message = "Received deep link did not match."
+            )
+        }
 }
