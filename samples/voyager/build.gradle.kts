@@ -30,6 +30,7 @@ kotlin {
         commonMain.dependencies {
             api(projects.rinku.rinkuCore)
             implementation(projects.rinku.rinkuComposeExt)
+            implementation(projects.samples.common)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
         }

@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import cafe.adriel.voyager.navigator.CurrentScreen
+import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
-import components.toScreenStack
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.compose.ext.DeepLinkListener
-import screens.FirstScreen
+import screens.First
 
 /**
  * Represents the root composable function of the application. It listens for deep link changes
@@ -41,12 +41,14 @@ fun App() {
 private fun MainScreen(deepLink: DeepLink?) {
     // Calculates the screen stack to be displayed based on the deep link. This is recalculated
     // every time the deep link changes.
-    val screenStack = remember(deepLink) { deepLink.toScreenStack() }
+    val screenStack = remember(deepLink) {
+        deepLink.toScreenStack()
+    }
 
     MaterialTheme {
         // Initializes the navigator with the first screen. Depending on the current screen stack,
         // it may navigate to different screens within the app.
-        Navigator(FirstScreen()) {
+        Navigator(screen = First()) {
             CurrentScreen()
             // Replaces the entire screen stack based on the current deep link. This ensures that
             // the app navigates to the appropriate screen.

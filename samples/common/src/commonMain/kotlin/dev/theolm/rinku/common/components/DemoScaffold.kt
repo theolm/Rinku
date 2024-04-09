@@ -1,4 +1,4 @@
-package components
+package dev.theolm.rinku.common.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,7 +35,6 @@ fun DemoScaffold(
                         }
                     }
                 },
-
             )
         },
         content = content

@@ -1,24 +1,18 @@
 package screens
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import components.DemoScaffold
+import dev.theolm.rinku.common.screens.SecondScreen
 
-class SecondScreen : Screen {
+class Second : Screen {
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-        DemoScaffold(
-            title = "Second",
-            onBackPress = {
-                navigator.pop()
-            }
-        ) {
-            Text("Second Screen")
+        SecondScreen {
+            navigator.pop()
         }
     }
 }

@@ -11,13 +11,12 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import components.toScreenStack
 import dev.theolm.rinku.DeepLink
+import dev.theolm.rinku.common.screens.FirstScreen
+import dev.theolm.rinku.common.screens.FourthScreen
+import dev.theolm.rinku.common.screens.SecondScreen
+import dev.theolm.rinku.common.screens.ThirdScreen
 import dev.theolm.rinku.compose.ext.DeepLinkListener
-import screens.FirstScreen
-import screens.FourthScreen
-import screens.SecondScreen
-import screens.ThirdScreen
 
 /**
  * Main entry point of the app.

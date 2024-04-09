@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 include(
     ":samples:voyager",
     ":samples:decompose",
+    ":samples:common",
     ":rinku-core",
     ":rinku-compose-ext",
 )
