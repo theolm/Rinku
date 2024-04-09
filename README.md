@@ -176,7 +176,7 @@ class AppComponentImpl(
 
 
 ## Demonstrative Samples
-TThe library includes two illustrative examples utilizing the foremost multiplatform navigation libraries: [Voyager](https://voyager.adriel.cafe/) and [Decompose](https://github.com/arkivanov/Decompose)
+The library includes two illustrative examples utilizing the foremost multiplatform navigation libraries: [Voyager](https://voyager.adriel.cafe/) and [Decompose](https://github.com/arkivanov/Decompose)
 
 - [Voyager sample](https://github.com/theolm/Rinku/tree/main/samples/voyager)
 - [Decompose sample](https://github.com/theolm/Rinku/tree/main/samples/decompose)
