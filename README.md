@@ -22,11 +22,17 @@ Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep li
 - For iOS: iOS 13.0 or later
 
 ### Installation Process
+The library is available via Maven Central
+```kt
+implementation("dev.theolm:rinku:<latest_version>")
+implementation("dev.theolm:rinku-compose-ext:<latest_version>")
+```
 
 #### Gradle Configuration
 
 In your `build.gradle.kts` file you need to:
 - Include Rinku in commonMain as an api (this is required to export it to iOS)
+- If you are using Compose multiplatform, also include the compose-extensions
 - Export the lib in the ios framework
 
 
@@ -50,6 +56,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api("dev.theolm:rinku:<latest_version>")
+
+            // For compose multiplatform projects
+            implementation("dev.theolm:rinku-compose-ext:<latest_version>")
         }
     }
 }
@@ -63,7 +72,24 @@ This guide presupposes the prior configuration of deeplinks within the native pl
 - [iOS universal link](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app)
 
 ### Android setup
+The library provides two types of initialization (KMP only and Compose), you should use the one that fit your needs.
 
+#### KMP only
+On the Android app, inside the `onCreate`, call the extension `RinkuInit()`.
+```kt
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        RinkuInit()
+        setContent {
+            App()
+        }
+    }
+}
+```
+
+#### With Compose multiplatform
+First make sure you included the `rinku-compose-ext`in your `commonMain`.
 On the Android app inside the `setContent` use `ComponentActivity.Riku` extension to wrap the root of your app.
 
 ```kt
@@ -108,7 +134,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 ```
 
 ### Common setup
-In the common code you just need to listen to the deeplinks and treat them as you need. Once the application (Android or iOS) recieves a deeplink it will parse it into a `Deeplink` data class and pass it into the `DeepLinkListener`.
+In the common code you just need to listen to the deeplinks and treat them as you need. Once the application (Android or iOS) recieves a deeplink it will parse it into a `Deeplink` data class and pass it into the listener. Use the listener that suite your project.
+
+#### Using Compose
 
 Example RootApp in commonMain:
 ```kt
@@ -120,6 +148,33 @@ fun RootApp() {
 }
 ```
 
+#### KMP only
+Just use the suspend function `listenForDeepLinks` and react as you will.
+
+Example inside a Decompose component:
+```kt
+class AppComponentImpl(
+    private val initialStack: List<Config> = emptyList(),
+    componentContext: ComponentContext,
+) : AppComponent, ComponentContext by componentContext {
+    private val navigation = StackNavigation<Config>()
+
+    init {
+        launch { initDeepLinkListener() } 
+    }
+
+    private suspend fun initDeepLinkListener() {
+        listenForDeepLinks { 
+            navigation.replaceAll(
+                *it.toScreenStack().toTypedArray()
+            )
+        }
+    }
+}
+
+```
+
+
 ## Demonstrative Samples
 TThe library includes two illustrative examples utilizing the foremost multiplatform navigation libraries: [Voyager](https://voyager.adriel.cafe/) and [Decompose](https://github.com/arkivanov/Decompose)
 
@@ -127,6 +182,7 @@ TThe library includes two illustrative examples utilizing the foremost multiplat
 - [Decompose sample](https://github.com/theolm/Rinku/tree/main/samples/decompose)
 
 *Note: Only the Voyager sample includes an iOS application. Nonetheless, the setup for Decompose would mirror that of Voyager.*
+*Note 2: Both examples are using Compose multiplatform.*
 
 ## License
 Rinku is released under the MIT License. See the LICENSE file for more details.
