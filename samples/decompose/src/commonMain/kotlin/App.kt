@@ -42,10 +42,9 @@ fun App() {
  */
 @Composable
 private fun MainScreen(deepLink: DeepLink?) {
-    val screenStack = deepLink.toScreenStack()
-    val component = remember(screenStack) {
+    val component = remember(deepLink) {
         AppComponentImpl(
-            initialStack = screenStack,
+            initialStack = deepLink.toScreenStack(),
             componentContext = DefaultComponentContext(LifecycleRegistry())
         )
     }

@@ -1,13 +1,18 @@
 package dev.theolm.rinku
 
 import com.eygraber.uri.Uri
+import kotlinx.datetime.Clock
 
 /**
  * A data class representing a deep link, encapsulating various components of the URI.
  *
  * @property data The raw URI string used to create the deep link object.
+ * @property timestamp The timestamp of the deep link creation. Defaults to the current time.
  */
-data class DeepLink(private val data: String) {
+data class DeepLink internal constructor(
+    private val data: String,
+    val timestamp: Long = Clock.System.now().toEpochMilliseconds()
+) {
     /**
      * The URI object parsed from the raw data string.
      */

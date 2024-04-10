@@ -23,6 +23,8 @@ kotlin {
         commonMain.dependencies {
             api(libs.uri)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.collections.immutable)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
