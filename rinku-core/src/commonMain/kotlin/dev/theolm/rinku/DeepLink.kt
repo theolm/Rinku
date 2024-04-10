@@ -1,6 +1,12 @@
 package dev.theolm.rinku
 
 import com.eygraber.uri.Uri
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableMap
+import kotlinx.collections.immutable.toImmutableSet
 import kotlinx.datetime.Clock
 
 /**
@@ -36,7 +42,7 @@ data class DeepLink internal constructor(
     /**
      * A list of path segments, splitting the path by '/'.
      */
-    val pathSegments: List<String> get() = uri.pathSegments
+    val pathSegments: ImmutableList<String> get() = uri.pathSegments.toImmutableList()
 
     /**
      * The query part of the URI, which is the section after '?'.
@@ -51,16 +57,16 @@ data class DeepLink internal constructor(
     /**
      * A set of query parameter names present in the URI.
      */
-    val queryParameterNames: Set<String> get() = uri.getQueryParameterNames()
+    val queryParameterNames: ImmutableSet<String> get() = uri.getQueryParameterNames().toImmutableSet()
 
     /**
      * A map of query parameters to their corresponding values. This map is populated from the URI's query parameters.
      */
-    val parameters: HashMap<String, String> = HashMap<String, String>().apply {
+    val parameters: ImmutableMap<String, String> = HashMap<String, String>().apply {
         queryParameterNames.forEach {
             uri.getQueryParameter(it)?.let { value ->
                 put(it, value)
             }
         }
-    }
+    }.toImmutableMap()
 }
