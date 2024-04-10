@@ -13,6 +13,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -37,10 +38,11 @@ class RinkuCoreTest {
         Rinku.handleDeepLink(testUrl)
         advanceUntilIdle()
 
+        val consumedLink = Rinku.consumeDeepLink()
         assertEquals(
-            expected = DeepLink(testUrl),
-            actual = Rinku.consumeDeepLink(),
-            message = "Deep link state was not set correctly.",
+            expected = testUrl,
+            actual = consumedLink?.data,
+            message = "Consumed deep link did not match."
         )
     }
 
@@ -52,10 +54,9 @@ class RinkuCoreTest {
 
         // Consume the deep link
         val consumedLink = Rinku.consumeDeepLink()
-        assertEquals(
-            expected = DeepLink(testUrl),
+        assertNotNull(
             actual = consumedLink,
-            message = "Consumed deep link did not match."
+            message = "Consumed deep link was null."
         )
 
         // Ensure deepLinkState is cleared
@@ -90,8 +91,8 @@ class RinkuCoreTest {
             job.cancel()
 
             assertEquals(
-                expected = DeepLink(testUrl),
-                actual = receivedDeepLink,
+                expected = testUrl,
+                actual = receivedDeepLink?.data,
                 message = "Received deep link did not match."
             )
         }

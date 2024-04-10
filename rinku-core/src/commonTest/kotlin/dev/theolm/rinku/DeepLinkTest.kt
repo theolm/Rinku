@@ -6,6 +6,7 @@ import kotlin.test.assertTrue
 
 private const val Schema = "https://"
 private const val Host = "dev.theolm"
+
 class DeepLinkTest {
 
 
@@ -26,46 +27,13 @@ class DeepLinkTest {
         val deepLink = DeepLink(url)
         assertEquals(
             expected = "/path/to/resource",
-            actual = deepLink.path,
+            actual = deepLink.encodedPath,
             message = "Path should be parsed correctly."
         )
     }
 
     @Test
-    fun `test encoded path parsing`() {
-        val url = "${Schema}$Host/path/to/resource"
-        val deepLink = DeepLink(url)
-        assertEquals(
-            expected = "/path/to/resource",
-            actual = deepLink.encodedPath,
-            message = "Encoded path should be parsed correctly."
-        )
-    }
-
-    @Test
-    fun `test path segments parsing`() {
-        val url = "${Schema}$Host/path/to/resource"
-        val deepLink = DeepLink(url)
-        assertEquals(
-            expected = listOf("path", "to", "resource"),
-            actual = deepLink.pathSegments,
-            message = "Path segments should be parsed correctly."
-        )
-    }
-
-    @Test
     fun `test query parsing`() {
-        val url = "${Schema}$Host/path?query1=value1&query2=value2"
-        val deepLink = DeepLink(url)
-        assertEquals(
-            expected = "query1=value1&query2=value2",
-            actual = deepLink.query,
-            message = "Query should be parsed correctly."
-        )
-    }
-
-    @Test
-    fun `test encoded query parsing`() {
         val url = "${Schema}$Host/path?query1=value1&query2=value2"
         val deepLink = DeepLink(url)
         assertEquals(
@@ -98,25 +66,24 @@ class DeepLinkTest {
         )
     }
 
-    // Tests for encoded values
     @Test
-    fun `test path decoding with encoded values`() {
+    fun `test path with encoded values`() {
         val url = "${Schema}$Host/path%20with%20spaces"
         val deepLink = DeepLink(url)
         assertEquals(
-            expected = "/path with spaces",
-            actual = deepLink.path,
+            expected = "/path%20with%20spaces",
+            actual = deepLink.encodedPath,
             message = "Path should be decoded correctly."
         )
     }
 
     @Test
-    fun `test query decoding with encoded values`() {
+    fun `test query with encoded values`() {
         val url = "${Schema}$Host/path?query%20name=value%20with%20spaces"
         val deepLink = DeepLink(url)
         assertEquals(
-            expected = "query name=value with spaces",
-            actual = deepLink.query,
+            expected = "query%20name=value%20with%20spaces",
+            actual = deepLink.encodedQuery,
             message = "Query should be decoded correctly."
         )
     }

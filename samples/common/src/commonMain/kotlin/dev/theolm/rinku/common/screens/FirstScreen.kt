@@ -37,12 +37,10 @@ fun FirstScreen(deepLink: DeepLink? = null) {
             Spacer(modifier = Modifier.height(32.dp))
             deepLink?.let {
                 Column {
-                    Text("URI: ${it.uri}")
                     Text("host: ${it.host}")
-                    Text("Path: ${it.path}")
+                    Text("Path: ${it.encodedPath}")
                     Text("Path List: ${it.pathSegments}")
-                    Text("Query: ${it.query}")
-                    Text("encoded Query: ${it.encodedQuery}")
+                    Text("Query: ${it.encodedQuery}")
                     Text("Query map: ${it.parameters}")
                 }
             } ?: run {

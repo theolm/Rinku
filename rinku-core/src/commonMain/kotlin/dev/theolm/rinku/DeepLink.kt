@@ -1,12 +1,7 @@
 package dev.theolm.rinku
 
-import com.eygraber.uri.Uri
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.ImmutableMap
-import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.toImmutableList
-import kotlinx.collections.immutable.toImmutableMap
-import kotlinx.collections.immutable.toImmutableSet
+import io.ktor.http.URLBuilder
+import io.ktor.util.flattenEntries
 import kotlinx.datetime.Clock
 
 /**
@@ -16,57 +11,46 @@ import kotlinx.datetime.Clock
  * @property timestamp The timestamp of the deep link creation. Defaults to the current time.
  */
 data class DeepLink internal constructor(
-    private val data: String,
+    internal val data: String,
     val timestamp: Long = Clock.System.now().toEpochMilliseconds()
 ) {
     /**
-     * The URI object parsed from the raw data string.
+     * The URL object parsed from the raw data string.
      */
-    val uri = Uri.parse(data)
+    private val url = URLBuilder(data).build()
+
+    /**
+     * The schema part of the URI.
+     */
+    val schema = url.protocol.name
 
     /**
      * The host part of the URI.
      */
-    val host: String? get() = uri.host
-
-    /**
-     * The path part of the URI. It is decoded.
-     */
-    val path: String? get() = uri.path
+    val host: String = url.host
 
     /**
      * The encoded path part of the URI. It is encoded to ensure special characters are represented correctly.
      */
-    val encodedPath: String? get() = uri.encodedPath
+    val encodedPath: String = url.encodedPath
 
     /**
      * A list of path segments, splitting the path by '/'.
      */
-    val pathSegments: ImmutableList<String> get() = uri.pathSegments.toImmutableList()
-
-    /**
-     * The query part of the URI, which is the section after '?'.
-     */
-    val query: String? get() = uri.query
+    val pathSegments: List<String> = url.pathSegments.filter { it.isNotBlank() }
 
     /**
      * The encoded query part of the URI, ensuring special characters in the query are correctly encoded.
      */
-    val encodedQuery: String? get() = uri.encodedQuery
+    val encodedQuery: String = url.encodedQuery
 
     /**
      * A set of query parameter names present in the URI.
      */
-    val queryParameterNames: ImmutableSet<String> get() = uri.getQueryParameterNames().toImmutableSet()
+    val queryParameterNames: Set<String> = url.parameters.names()
 
     /**
      * A map of query parameters to their corresponding values. This map is populated from the URI's query parameters.
      */
-    val parameters: ImmutableMap<String, String> = HashMap<String, String>().apply {
-        queryParameterNames.forEach {
-            uri.getQueryParameter(it)?.let { value ->
-                put(it, value)
-            }
-        }
-    }.toImmutableMap()
+    val parameters: Map<String, String> = url.parameters.flattenEntries().toMap()
 }

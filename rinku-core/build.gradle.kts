@@ -21,7 +21,7 @@ kotlin {
             implementation(libs.androidx.activity.ktx)
         }
         commonMain.dependencies {
-            api(libs.uri)
+            implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.collections.immutable)
