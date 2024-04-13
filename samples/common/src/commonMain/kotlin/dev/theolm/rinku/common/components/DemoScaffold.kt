@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun DemoScaffold(
@@ -27,7 +28,10 @@ fun DemoScaffold(
                 },
                 navigationIcon = onBackPress?.let {
                     {
-                        IconButton(onClick = onBackPress) {
+                        IconButton(
+                            modifier = Modifier.testTag("backButton"),
+                            onClick = onBackPress
+                        ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back"

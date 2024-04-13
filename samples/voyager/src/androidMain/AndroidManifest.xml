@@ -30,6 +30,7 @@
                 <data android:scheme="https"/>
                 <data android:scheme="rinku"/>
                 <data android:host="dev.theolm.rinku"/>
+                <data android:host="dev.theolm.rinku.voyager"/>
             </intent-filter>
         </activity>
     </application>

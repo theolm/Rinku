@@ -1,0 +1,23 @@
+appId: ${appId}
+
+---
+
+- openLink:
+    link: "rinku://${host}/second/third/fourth?param1=1&param2=2"
+    autoVerify: true
+- assertVisible:
+    text: "Fourth Screen"
+    index: 0
+- tapOn: "Back"
+- assertVisible:
+    text: "Third Screen"
+    index: 0
+- tapOn: "Back"
+- assertVisible:
+    text: "Second Screen"
+    index: 0
+- tapOn: "Back"
+- assertVisible: "host: ${host}"
+- assertVisible: "Path: /second/third/fourth"
+- assertVisible: "Query map: {param1=1, param2=2}"
+- stopApp: ${appId}

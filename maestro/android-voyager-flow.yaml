@@ -1,0 +1,27 @@
+appId: dev.theolm.rinku.voyager
+env:
+  appId: dev.theolm.rinku.voyager
+  host: dev.theolm.rinku.voyager
+
+---
+# Fresh open of the app
+- stopApp: ${appId}
+- runFlow:
+      file: subflows/deeplink-query-flow.yaml
+      env:
+          appId: ${appId}
+          host: ${host}
+# Internal deeplink with the app open
+- runFlow:
+    file: subflows/deeplink-query-flow.yaml
+    env:
+      appId: ${appId}
+      host: ${host}
+
+# Another run with cold boot
+- stopApp: ${appId}
+- runFlow:
+    file: subflows/deeplink-query-flow.yaml
+    env:
+      appId: ${appId}
+      host: ${host}
