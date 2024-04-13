@@ -20,6 +20,10 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      - uses: ncipollo/release-action@v1
+        with:
+          bodyFile: "CHANGELOG.md"
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
