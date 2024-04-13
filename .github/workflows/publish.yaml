@@ -9,6 +9,8 @@ jobs:
   release:
     name: Publish
     runs-on: macOS-latest
+    permissions:
+      contents: write
     timeout-minutes: 60
     steps:
 
