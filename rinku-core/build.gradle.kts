@@ -3,8 +3,9 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     id("android-lib-setup")
-    id("org.jetbrains.kotlin.multiplatform")
     id("publish-setup")
     id("detekt-setup")
 }
@@ -24,7 +25,7 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.collections.immutable)
+            implementation(libs.kotlinx.serialization)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
