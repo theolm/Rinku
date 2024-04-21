@@ -2,6 +2,7 @@
 
 package dev.theolm.rinku
 
+import dev.theolm.rinku.models.DeepLinkParam
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -20,6 +21,15 @@ object Rinku {
     }
 
     internal fun consumeDeepLink(): DeepLink? = deepLinkFlow.getAndUpdate { null }
+
+    fun buildUri(url: String, vararg parameters: DeepLinkParam<*>): String {
+        val uriBuilder = StringBuilder(url)
+        if (parameters.isNotEmpty()) {
+            uriBuilder.append("?")
+            uriBuilder.append(parameters.joinToString("&") { "${it.name}=${it.serialize()}" })
+        }
+        return uriBuilder.toString()
+    }
 }
 
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {

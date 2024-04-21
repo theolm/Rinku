@@ -1,19 +1,19 @@
 package dev.theolm.rinku
 
-import kotlinx.serialization.Serializable
+import dev.theolm.models.ComplexModel
+import dev.theolm.models.Name
+import dev.theolm.models.WrongSerializer
+import dev.theolm.models.mockComplexModel
+import dev.theolm.rinku.models.DeepLinkParam
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 private const val Schema = "https://"
 private const val Host = "dev.theolm"
+
 class DeepLinkExtTest {
-
-    @Serializable
-    private data class Name(val name: String)
-
-    @Serializable
-    private data class WrongSerializer(val error: String)
 
     @Test
     fun `when getParameter - expect to return a tapesafe parameter`() {
@@ -53,5 +53,23 @@ class DeepLinkExtTest {
         } catch (e: Exception) {
             assertTrue(e.message.orEmpty().contains("Unexpected JSON"))
         }
+    }
+
+    @Test
+    fun `get complex model from serialized object`() = runTest {
+        val testUrl = "${Schema}$Host/path"
+        val testParam = DeepLinkParam(
+            "complexParam",
+            mockComplexModel,
+            ComplexModel.serializer()
+        )
+        val url = Rinku.buildUri(testUrl, testParam)
+        val deepLink = DeepLink(url)
+
+        assertEquals(
+            expected = mockComplexModel,
+            actual = deepLink.getParameter("complexParam", ComplexModel.serializer()),
+            message = "Models don't match"
+        )
     }
 }

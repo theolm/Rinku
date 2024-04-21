@@ -1,5 +1,9 @@
 package dev.theolm.rinku
 
+import dev.theolm.models.ComplexModel
+import dev.theolm.models.Name
+import dev.theolm.models.mockComplexModel
+import dev.theolm.rinku.models.DeepLinkParam
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -15,6 +19,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+
+private const val testUrl = "https://test.com"
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RinkuCoreTest {
@@ -34,7 +40,6 @@ class RinkuCoreTest {
 
     @Test
     fun `handleDeepLink sets deepLinkState`() = runTest(testDispatcher) {
-        val testUrl = "https://test.com"
         Rinku.handleDeepLink(testUrl)
         advanceUntilIdle()
 
@@ -79,7 +84,6 @@ class RinkuCoreTest {
     @Test
     fun `on handleDeepLink expects listenForDeepLinks receive a deeplink`() =
         runTest(testDispatcher) {
-            val testUrl = "https://test.com"
             var receivedDeepLink: DeepLink? = null
 
             val job = launch {
@@ -96,4 +100,40 @@ class RinkuCoreTest {
                 message = "Received deep link did not match."
             )
         }
+
+    @Test
+    fun `buildUri creates a deep link with the provided uri and parameters`() {
+        val testModel = Name("Testing")
+        val testParam = DeepLinkParam(
+            "testParam",
+            testModel,
+            Name.serializer()
+        )
+        val url = Rinku.buildUri(testUrl, testParam)
+
+        assertEquals(
+            expected = "https://test.com?testParam={\"name\":\"Testing\"}",
+            actual = url,
+            message = "url does not match expected value."
+        )
+    }
+
+    @Suppress("MaxLineLength")
+    @Test
+    fun `buildUri using a complex model creates a deep link with the provided uri and parameters `() {
+        val testParam = DeepLinkParam(
+            "complexParam",
+            mockComplexModel,
+            ComplexModel.serializer()
+        )
+        val url = Rinku.buildUri(testUrl, testParam)
+        val expected =
+            "https://test.com?complexParam={\"name\":{\"name\":\"John\"},\"timestamp\":1234567890,\"listOfNames\":[{\"name\":\"Jane\"},{\"name\":\"Doe\"}],\"mapOfNames\":{\"first\":{\"name\":\"John\"},\"second\":{\"name\":\"Jane\"}},\"nestedList\":[[\"a\",\"b\",\"c\"],[\"d\",\"e\",\"f\"]]}"
+
+        assertEquals(
+            expected = expected,
+            actual = url,
+            message = "url does not match expected value."
+        )
+    }
 }

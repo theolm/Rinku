@@ -1,5 +1,6 @@
 package dev.theolm.rinku
 
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -8,7 +9,6 @@ private const val Schema = "https://"
 private const val Host = "dev.theolm"
 
 class DeepLinkTest {
-
 
     @Test
     fun `test host parsing`() {
