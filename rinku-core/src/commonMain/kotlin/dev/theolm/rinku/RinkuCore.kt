@@ -22,14 +22,15 @@ object Rinku {
 
     internal fun consumeDeepLink(): DeepLink? = deepLinkFlow.getAndUpdate { null }
 
-    fun buildUri(url: String, vararg parameters: DeepLinkParam<*>): String {
-        val uriBuilder = StringBuilder(url)
-        if (parameters.isNotEmpty()) {
-            uriBuilder.append("?")
-            uriBuilder.append(parameters.joinToString("&") { "${it.name}=${it.serialize()}" })
-        }
-        return uriBuilder.toString()
-    }
+    fun buildUrl(
+        schema: String,
+        host: String,
+        path: String? = null,
+        vararg parameters: DeepLinkParam<*>
+    ) = UrlBuilder.buildUrl(schema, host, path, *parameters)
+
+    fun buildUrl(url: String, vararg parameters: DeepLinkParam<*>) =
+        UrlBuilder.buildUrl(url, *parameters)
 }
 
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {

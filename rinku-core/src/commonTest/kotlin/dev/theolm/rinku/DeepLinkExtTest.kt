@@ -63,7 +63,7 @@ class DeepLinkExtTest {
             mockComplexModel,
             ComplexModel.serializer()
         )
-        val url = Rinku.buildUri(testUrl, testParam)
+        val url = Rinku.buildUrl(testUrl, testParam)
         val deepLink = DeepLink(url)
 
         assertEquals(
