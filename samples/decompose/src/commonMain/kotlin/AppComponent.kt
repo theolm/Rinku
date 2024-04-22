@@ -4,8 +4,8 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.value.Value
-import com.arkivanov.essenty.parcelable.Parcelable
-import com.arkivanov.essenty.parcelable.Parcelize
+import dev.theolm.rinku.common.models.RandomArgument
+import kotlinx.serialization.Serializable
 
 /**
  * This class only contains functions related to Decompose
@@ -16,10 +16,10 @@ interface AppComponent {
     fun onBackPress()
 
     sealed class Screen {
-        data object First : Screen()
-        data object Second : Screen()
-        data object Third : Screen()
-        data object Fourth : Screen()
+        data class First(val randomArguments: List<RandomArgument> = emptyList()) : Screen()
+        data class Second(val randomArguments: List<RandomArgument> = emptyList()) : Screen()
+        data class Third(val randomArguments: List<RandomArgument> = emptyList()) : Screen()
+        data class Fourth(val randomArguments: List<RandomArgument> = emptyList()) : Screen()
     }
 }
 
@@ -36,9 +36,10 @@ class AppComponentImpl(
     override val stack: Value<ChildStack<*, AppComponent.Screen>> =
         childStack(
             source = navigation,
+            serializer = Config.serializer(),
             initialStack = {
                 initialStack.ifEmpty {
-                    listOf(Config.First)
+                    listOf(Config.First())
                 }
             },
             handleBackButton = true,
@@ -48,10 +49,10 @@ class AppComponentImpl(
     @Suppress("UnusedParameter")
     private fun child(config: Config, componentContext: ComponentContext): AppComponent.Screen =
         when (config) {
-            Config.First -> AppComponent.Screen.First
-            Config.Fourth -> AppComponent.Screen.Fourth
-            Config.Second -> AppComponent.Screen.Second
-            Config.Third -> AppComponent.Screen.Third
+            is Config.First -> AppComponent.Screen.First(config.randomArguments)
+            is Config.Fourth -> AppComponent.Screen.Fourth(config.randomArguments)
+            is Config.Second -> AppComponent.Screen.Second(config.randomArguments)
+            is Config.Third -> AppComponent.Screen.Third(config.randomArguments)
         }
 
     override fun onBackPress() {
@@ -59,17 +60,17 @@ class AppComponentImpl(
     }
 }
 
-@Parcelize // kotlin-parcelize plugin must be applied if you are targeting Android
-sealed interface Config : Parcelable {
-    @Parcelize //
-    data object First : Config
+@Serializable
+sealed interface Config {
+    @Serializable
+    data class First(val randomArguments: List<RandomArgument> = emptyList()) : Config
 
-    @Parcelize //
-    data object Second : Config
+    @Serializable
+    data class Second(val randomArguments: List<RandomArgument> = emptyList()) : Config
 
-    @Parcelize //
-    data object Third : Config
+    @Serializable
+    data class Third(val randomArguments: List<RandomArgument> = emptyList()) : Config
 
-    @Parcelize //
-    data object Fourth : Config
+    @Serializable
+    data class Fourth(val randomArguments: List<RandomArgument> = emptyList()) : Config
 }

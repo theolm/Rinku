@@ -12,8 +12,12 @@ fun DeepLink?.toScreenStack(): List<Screen> {
         return listOf(First(this))
     }
 
-    val parameters = queryParameterNames.map {
-        getParameter(queryParameterNames.first(), RandomArgument.serializer())
+    val parameters = try {
+        queryParameterNames.map {
+            getParameter(queryParameterNames.first(), RandomArgument.serializer())
+        }
+    } catch (e: Exception) {
+        emptyList()
     }
 
     val screenPaths = this.pathSegments.mapNotNull {

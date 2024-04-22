@@ -8,7 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import dev.theolm.rinku.DeepLink
@@ -53,21 +53,29 @@ private fun MainScreen(deepLink: DeepLink?) {
         Children(
             stack = component.stack,
             modifier = Modifier.fillMaxSize(),
-            animation = stackAnimation(fade()),
+            animation = stackAnimation(slide()),
         ) {
-            when (it.instance) {
+            when (val screen = it.instance) {
                 is AppComponent.Screen.First -> FirstScreen(deepLink)
-                is AppComponent.Screen.Second -> SecondScreen {
-                    component.onBackPress()
-                }
+                is AppComponent.Screen.Second -> SecondScreen(
+                    onBackPress = {
+                        component.onBackPress()
+                    },
+                    randomArgument = screen.randomArguments
+                )
+                is AppComponent.Screen.Third -> ThirdScreen(
+                    onBackPress = {
+                        component.onBackPress()
+                    },
+                    randomArgument = screen.randomArguments
+                )
 
-                is AppComponent.Screen.Third -> ThirdScreen {
-                    component.onBackPress()
-                }
-
-                is AppComponent.Screen.Fourth -> FourthScreen {
-                    component.onBackPress()
-                }
+                is AppComponent.Screen.Fourth -> FourthScreen(
+                    onBackPress = {
+                        component.onBackPress()
+                    },
+                    randomArgument = screen.randomArguments
+                )
             }
         }
     }

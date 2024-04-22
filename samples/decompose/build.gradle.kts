@@ -4,6 +4,7 @@ plugins {
     id("sample-setup")
     id("kotlin-parcelize")
     id("detekt-setup")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -32,6 +33,7 @@ kotlin {
             implementation(projects.samples.common)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
+            implementation(libs.kotlinx.serialization)
         }
     }
 }

@@ -1,4 +1,6 @@
 import dev.theolm.rinku.DeepLink
+import dev.theolm.rinku.common.models.RandomArgument
+import dev.theolm.rinku.getParameter
 
 /**
  * Builds a screen stack based on the deep link.
@@ -7,17 +9,26 @@ import dev.theolm.rinku.DeepLink
  */
 fun DeepLink?.toScreenStack(): List<Config> {
     if (this == null) {
-        return listOf(Config.First)
+        return listOf(Config.First())
+    }
+
+    //Try to parse RandomArgument from the query parameters
+    val parameters = try {
+        queryParameterNames.map {
+            getParameter(it, RandomArgument.serializer())
+        }
+    } catch (e: Exception) {
+        emptyList<RandomArgument>()
     }
 
     val screenPaths = this.pathSegments.mapNotNull {
         when (it) {
-            "second" -> Config.Second
-            "third" -> Config.Third
-            "fourth" -> Config.Fourth
+            "second" -> Config.Second(parameters)
+            "third" -> Config.Third(parameters)
+            "fourth" -> Config.Fourth(parameters)
             else -> null
         }
     }
 
-    return listOf(Config.First) + screenPaths
+    return listOf(Config.First()) + screenPaths
 }
