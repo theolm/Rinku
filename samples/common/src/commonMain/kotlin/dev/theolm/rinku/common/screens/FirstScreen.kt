@@ -15,7 +15,8 @@ import androidx.compose.ui.unit.dp
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.Rinku
 import dev.theolm.rinku.common.components.DemoScaffold
-import kotlin.random.Random
+import dev.theolm.rinku.common.models.RandomArgument
+import dev.theolm.rinku.models.DeepLinkParam
 
 @Composable
 fun FirstScreen(deepLink: DeepLink? = null) {
@@ -51,11 +52,28 @@ fun FirstScreen(deepLink: DeepLink? = null) {
 }
 
 private fun randomDeepLink(): String {
-    val paths = mutableListOf("second", "third", "fourth")
-    val first = paths.random().also { paths.remove(it) }
-    val second = paths.random().also { paths.remove(it) }
-    val third = paths.first()
+    val path = mutableListOf("second", "third", "fourth")
+        .apply { shuffle() }
+        .joinToString("/")
 
-    val arguments = "a=${Random.nextInt()}&b=${Random.nextInt()}&c=${Random.nextInt()}"
-    return "rinku://dev.theolm.rinku/$first/$second/$third/?$arguments"
+    return Rinku.buildUrl(
+        schema = "rinku",
+        host = "dev.theolm.rinku",
+        path = path,
+        DeepLinkParam(
+            "a",
+            RandomArgument(),
+            RandomArgument.serializer()
+        ),
+        DeepLinkParam(
+            "b",
+            RandomArgument(),
+            RandomArgument.serializer()
+        ),
+        DeepLinkParam(
+            "c",
+            RandomArgument(),
+            RandomArgument.serializer()
+        ),
+    )
 }

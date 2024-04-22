@@ -2,6 +2,7 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
+    alias(libs.plugins.kotlinSerialization)
     id("android-lib-setup")
     id("compose-module-setup")
     id("detekt-setup")
@@ -17,6 +18,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.rinku.rinkuCore)
+            implementation(libs.kotlinx.serialization)
         }
     }
 }

@@ -4,6 +4,7 @@ import plugins.setupKmpTargets
 plugins {
     id("sample-setup")
     id("detekt-setup")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -33,6 +34,7 @@ kotlin {
             implementation(projects.samples.common)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screenModel)
+            implementation(libs.kotlinx.serialization)
         }
     }
 }

@@ -1,5 +1,7 @@
 import cafe.adriel.voyager.core.screen.Screen
 import dev.theolm.rinku.DeepLink
+import dev.theolm.rinku.common.models.RandomArgument
+import dev.theolm.rinku.getParameter
 import screens.First
 import screens.Fourth
 import screens.Second
@@ -10,11 +12,15 @@ fun DeepLink?.toScreenStack(): List<Screen> {
         return listOf(First(this))
     }
 
+    val parameters = queryParameterNames.map {
+        getParameter(queryParameterNames.first(), RandomArgument.serializer())
+    }
+
     val screenPaths = this.pathSegments.mapNotNull {
         when (it) {
-            "second" -> Second()
-            "third" -> Third()
-            "fourth" -> Fourth()
+            "second" -> Second(parameters)
+            "third" -> Third(parameters)
+            "fourth" -> Fourth(parameters)
             else -> null
         }
     }
