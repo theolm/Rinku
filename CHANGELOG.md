@@ -1,15 +1,8 @@
 # Changelog
 
-## [v0.1.0] - 2024-04-13
+## [v0.2.0] - 2024-04-22
 
 ### Added
 
-- **Unit and UI Tests**: Comprehensive tests have been added to enhance reliability and ensure functionality across different scenarios (using maestro).
-- **Samples Updates**: Existing samples have been updated to reflect the latest changes and improvements in library usage.
-
-### Changed
-
-- **Deep Link Parsing**: The library now internally uses Ktor URL to parse deep links, enhancing robustness and standard compliance.
-- **Support Improvements**:
-    - Enhanced support for Jetpack Compose, ensuring smoother integration and better performance.
-    - Strengthened the foundation for pure Kotlin Multiplatform Mobile (KMP) applications, fostering better cross-platform compatibility.
+- **Typesafe arguments**: The library now supports typesafe arguments for deep links, making it easier to work with deep link parameters. In order to use it the app/module needs to include kotlinx-serialization. To get the parameter value, you can use the `getArgument` method on the `DeepLink` object. The method will return the parameter value or null if the parameter is not present.
+- **BuildUrl**: The library now supports building URLs adding Serializable arguments. This is very handy for internal navigation. Use the `Rinku.buildUrl` to generate the url and pass it as argument to `handleDeepLink`.
