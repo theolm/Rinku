@@ -7,12 +7,13 @@ import dev.theolm.rinku.getParameter
  * If the deep link is null, the stack will contain only the first screen.
  * If the deep link is not null, the stack will contain the first screen and the screens specified in the deep link.
  */
+@Suppress("TooGenericExceptionCaught", "SwallowedException")
 fun DeepLink?.toScreenStack(): List<Config> {
     if (this == null) {
         return listOf(Config.First())
     }
 
-    //Try to parse RandomArgument from the query parameters
+    // Try to parse RandomArgument from the query parameters
     val parameters = try {
         queryParameterNames.map {
             getParameter(it, RandomArgument.serializer())

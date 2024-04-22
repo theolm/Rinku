@@ -7,6 +7,7 @@ import screens.Fourth
 import screens.Second
 import screens.Third
 
+@Suppress("TooGenericExceptionCaught", "SwallowedException")
 fun DeepLink?.toScreenStack(): List<Screen> {
     if (this == null) {
         return listOf(First(this))
