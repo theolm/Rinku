@@ -15,15 +15,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        Rinku.shared.handleDeepLink(url: url.absoluteString)
+        RinkuIosKt.onDeepLinkReceived(url: url.absoluteString)
         return true
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL {
-            let urlString = url.absoluteString
-            Rinku.shared.handleDeepLink(url: urlString)
-        }
+        RinkuIosKt.onDeepLinkReceived(userActivity: userActivity)
         return true
     }
 }
