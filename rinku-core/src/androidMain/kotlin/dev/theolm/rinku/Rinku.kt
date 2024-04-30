@@ -5,15 +5,22 @@ import androidx.activity.ComponentActivity
 import androidx.core.util.Consumer
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import dev.theolm.rinku.models.DeepLinkFilter
 
-fun ComponentActivity.RinkuInit() {
+fun ComponentActivity.RinkuInit(deepLinkFilter: DeepLinkFilter? = null) {
     intent.dataString?.let {
-        Rinku.handleDeepLink(it)
+        val shouldFire = deepLinkFilter?.isValid(it) ?: true
+        if (shouldFire) {
+            Rinku.handleDeepLink(it)
+        }
     }
 
     val listener = Consumer<Intent> {
         it?.dataString?.let {
-            Rinku.handleDeepLink(it)
+            val shouldFire = deepLinkFilter?.isValid(it) ?: true
+            if (shouldFire) {
+                Rinku.handleDeepLink(it)
+            }
         }
     }
 
