@@ -4,7 +4,7 @@ import ComposeApp
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
-    let rinku = RinkuIos(deepLinkFilter: nil)
+    let rinku = RinkuIos.init(deepLinkFilter: nil, deepLinkMapper: nil)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)

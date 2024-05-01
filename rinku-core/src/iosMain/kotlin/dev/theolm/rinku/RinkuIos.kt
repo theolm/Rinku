@@ -1,6 +1,7 @@
 package dev.theolm.rinku
 
 import dev.theolm.rinku.models.DeepLinkFilter
+import dev.theolm.rinku.models.DeepLinkMapper
 import platform.Foundation.NSUserActivity
 import platform.Foundation.NSUserActivityTypeBrowsingWeb
 import kotlin.experimental.ExperimentalObjCName
@@ -10,21 +11,23 @@ import kotlin.experimental.ExperimentalObjCName
 @ObjCName(swiftName = "RinkuIos")
 class RinkuIos(
     private val deepLinkFilter: DeepLinkFilter? = null,
+    private val deepLinkMapper: DeepLinkMapper? = null,
 ) {
     @ObjCName("onDeepLinkReceived")
     fun onDeepLinkReceived(url: String) {
-        filterAndFire(url, deepLinkFilter)
+        treatAndFireDeepLink(url)
     }
 
     @ObjCName("onDeepLinkReceived")
     fun onDeepLinkReceived(userActivity: NSUserActivity) {
-        userActivity.getUrlString()?.let { filterAndFire(it, deepLinkFilter) }
+        userActivity.getUrlString()?.let { treatAndFireDeepLink(it) }
     }
 
-    private fun filterAndFire(deepLinkUri: String, deepLinkFilter: DeepLinkFilter?) {
+    private fun treatAndFireDeepLink(deepLinkUri: String) {
         val shouldFire = deepLinkFilter?.isValid(deepLinkUri) ?: true
         if (shouldFire) {
-            Rinku.handleDeepLink(deepLinkUri)
+            val deepLink = deepLinkMapper?.map(deepLinkUri) ?: deepLinkUri
+            Rinku.handleDeepLink(deepLink)
         }
     }
 
@@ -34,5 +37,5 @@ class RinkuIos(
         } else {
             null
         }
-}
 
+}
