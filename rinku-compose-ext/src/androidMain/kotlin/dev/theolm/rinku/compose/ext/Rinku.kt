@@ -7,23 +7,33 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.core.util.Consumer
 import dev.theolm.rinku.Rinku.handleDeepLink
 import dev.theolm.rinku.models.DeepLinkFilter
+import dev.theolm.rinku.models.DeepLinkMapper
+import dev.theolm.rinku.treatBeforeFire
 
 @Composable
-fun ComponentActivity.Rinku(deepLinkFilter: DeepLinkFilter? = null, content: @Composable () -> Unit) {
+fun ComponentActivity.Rinku(
+    deepLinkFilter: DeepLinkFilter? = null,
+    deepLinkMapper: DeepLinkMapper? = null,
+    content: @Composable () -> Unit
+) {
     intent.dataString?.let {
-        val shouldFire = deepLinkFilter?.isValid(it) ?: true
-        if (shouldFire) {
-            handleDeepLink(it)
-        }
+        treatBeforeFire(
+            deepLink = it,
+            deepLinkFilter = deepLinkFilter,
+            deepLinkMapper = deepLinkMapper,
+            fireDeeplink = { handleDeepLink(it) }
+        )
     }
 
     DisposableEffect(Unit) {
         val listener = Consumer<Intent> {
             it?.dataString?.let {
-                val shouldFire = deepLinkFilter?.isValid(it) ?: true
-                if (shouldFire) {
-                    handleDeepLink(it)
-                }
+                treatBeforeFire(
+                    deepLink = it,
+                    deepLinkFilter = deepLinkFilter,
+                    deepLinkMapper = deepLinkMapper,
+                    fireDeeplink = { handleDeepLink(it) }
+                )
             }
         }
 
