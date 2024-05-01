@@ -4,6 +4,7 @@ import ComposeApp
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
+    let rinku = RinkuIos(deepLinkFilter: nil)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -15,12 +16,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        RinkuIosKt.onDeepLinkReceived(url: url.absoluteString, deepLinkFilter: TestFilter.shared)
+        rinku.onDeepLinkReceived(url: url.absoluteString)
         return true
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        RinkuIosKt.onDeepLinkReceived(userActivity: userActivity, deepLinkFilter: TestFilter.shared)
+        rinku.onDeepLinkReceived(userActivity: userActivity)
         return true
     }
 }

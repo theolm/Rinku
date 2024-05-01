@@ -6,17 +6,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.core.util.Consumer
 import dev.theolm.rinku.Rinku.handleDeepLink
+import dev.theolm.rinku.models.DeepLinkFilter
 
 @Composable
-fun ComponentActivity.Rinku(content: @Composable () -> Unit) {
+fun ComponentActivity.Rinku(deepLinkFilter: DeepLinkFilter? = null, content: @Composable () -> Unit) {
     intent.dataString?.let {
-        handleDeepLink(it)
+        val shouldFire = deepLinkFilter?.isValid(it) ?: true
+        if (shouldFire) {
+            handleDeepLink(it)
+        }
     }
 
     DisposableEffect(Unit) {
         val listener = Consumer<Intent> {
             it?.dataString?.let {
-                handleDeepLink(it)
+                val shouldFire = deepLinkFilter?.isValid(it) ?: true
+                if (shouldFire) {
+                    handleDeepLink(it)
+                }
             }
         }
 
