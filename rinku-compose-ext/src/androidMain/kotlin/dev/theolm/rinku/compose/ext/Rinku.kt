@@ -5,10 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.core.util.Consumer
-import dev.theolm.rinku.Rinku.handleDeepLink
 import dev.theolm.rinku.models.DeepLinkFilter
 import dev.theolm.rinku.models.DeepLinkMapper
-import dev.theolm.rinku.treatBeforeFire
+import dev.theolm.rinku.treatAndFireDeepLink
 
 @Composable
 fun ComponentActivity.Rinku(
@@ -16,25 +15,11 @@ fun ComponentActivity.Rinku(
     deepLinkMapper: DeepLinkMapper? = null,
     content: @Composable () -> Unit
 ) {
-    intent.dataString?.let {
-        treatBeforeFire(
-            deepLink = it,
-            deepLinkFilter = deepLinkFilter,
-            deepLinkMapper = deepLinkMapper,
-            fireDeeplink = { handleDeepLink(it) }
-        )
-    }
+    intent.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
 
     DisposableEffect(Unit) {
         val listener = Consumer<Intent> {
-            it?.dataString?.let {
-                treatBeforeFire(
-                    deepLink = it,
-                    deepLinkFilter = deepLinkFilter,
-                    deepLinkMapper = deepLinkMapper,
-                    fireDeeplink = { handleDeepLink(it) }
-                )
-            }
+            it?.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
         }
 
         this@Rinku.addOnNewIntentListener(listener)

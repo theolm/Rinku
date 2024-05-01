@@ -12,24 +12,10 @@ fun ComponentActivity.RinkuInit(
     deepLinkFilter: DeepLinkFilter? = null,
     deepLinkMapper: DeepLinkMapper? = null
 ) {
-    intent.dataString?.let {
-        treatBeforeFire(
-            deepLink = it,
-            deepLinkFilter = deepLinkFilter,
-            deepLinkMapper = deepLinkMapper,
-            fireDeeplink = { Rinku.handleDeepLink(it) }
-        )
-    }
+    intent.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
 
     val listener = Consumer<Intent> {
-        it?.dataString?.let {
-            treatBeforeFire(
-                deepLink = it,
-                deepLinkFilter = deepLinkFilter,
-                deepLinkMapper = deepLinkMapper,
-                fireDeeplink = { Rinku.handleDeepLink(it) }
-            )
-        }
+        it?.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
     }
 
     lifecycle.addObserver(
@@ -47,15 +33,16 @@ fun ComponentActivity.RinkuInit(
     )
 }
 
-fun treatBeforeFire(
-    deepLink: String,
+fun Intent.treatAndFireDeepLink(
     deepLinkFilter: DeepLinkFilter? = null,
     deepLinkMapper: DeepLinkMapper? = null,
-    fireDeeplink: (String) -> Unit
 ) {
-    val shouldFire = deepLinkFilter?.isValid(deepLink) ?: true
-    if (shouldFire) {
-        val mappedDeepLink = deepLinkMapper?.map(deepLink) ?: deepLink
-        fireDeeplink(mappedDeepLink)
+    dataString?.let { deepLink ->
+        val shouldFire = deepLinkFilter?.isValid(deepLink) ?: true
+        if (shouldFire) {
+            val mappedDeepLink = deepLinkMapper?.map(deepLink) ?: deepLink
+            Rinku.handleDeepLink(mappedDeepLink)
+        }
+
     }
 }
