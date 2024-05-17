@@ -12,6 +12,9 @@ fun ComponentActivity.RinkuInit(
     deepLinkFilter: DeepLinkFilter? = null,
     deepLinkMapper: DeepLinkMapper? = null
 ) {
+    deepLinkFilter?.let { Rinku.setDeepLinkFilter(it) }
+    deepLinkMapper?.let { Rinku.setDeepLinkMapper(it) }
+
     intent.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
 
     val listener = Consumer<Intent> {
@@ -43,6 +46,5 @@ fun Intent.treatAndFireDeepLink(
             val mappedDeepLink = deepLinkMapper?.map(deepLink) ?: deepLink
             Rinku.handleDeepLink(mappedDeepLink)
         }
-
     }
 }

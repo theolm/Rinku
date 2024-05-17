@@ -13,6 +13,11 @@ class RinkuIos(
     private val deepLinkFilter: DeepLinkFilter? = null,
     private val deepLinkMapper: DeepLinkMapper? = null,
 ) {
+    init {
+        deepLinkFilter?.let { Rinku.setDeepLinkFilter(it) }
+        deepLinkMapper?.let { Rinku.setDeepLinkMapper(it) }
+    }
+
     @ObjCName("onDeepLinkReceived")
     fun onDeepLinkReceived(url: String) {
         treatAndFireDeepLink(url)

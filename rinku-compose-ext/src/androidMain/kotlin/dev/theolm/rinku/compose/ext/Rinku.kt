@@ -15,6 +15,9 @@ fun ComponentActivity.Rinku(
     deepLinkMapper: DeepLinkMapper? = null,
     content: @Composable () -> Unit
 ) {
+    deepLinkFilter?.let { dev.theolm.rinku.Rinku.setDeepLinkFilter(it) }
+    deepLinkMapper?.let { dev.theolm.rinku.Rinku.setDeepLinkMapper(it) }
+
     intent.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
 
     DisposableEffect(Unit) {

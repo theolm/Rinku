@@ -2,6 +2,8 @@
 
 package dev.theolm.rinku
 
+import dev.theolm.rinku.models.DeepLinkFilter
+import dev.theolm.rinku.models.DeepLinkMapper
 import dev.theolm.rinku.models.DeepLinkParam
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,6 +12,9 @@ import kotlinx.coroutines.flow.getAndUpdate
 import kotlinx.coroutines.launch
 
 object Rinku {
+    private var deepLinkFilter: DeepLinkFilter? = null
+    private var deepLinkMapper: DeepLinkMapper? = null
+
     private val rinkuScope = MainScope()
     internal var deepLinkFlow = MutableStateFlow<DeepLink?>(null)
         private set
@@ -31,6 +36,14 @@ object Rinku {
 
     fun buildUrl(url: String, vararg parameters: DeepLinkParam<*>) =
         UrlBuilder.buildUrl(url, *parameters)
+
+    fun setDeepLinkFilter(deepLinkFilter: DeepLinkFilter) {
+        this.deepLinkFilter = deepLinkFilter
+    }
+
+    fun setDeepLinkMapper(deepLinkMapper: DeepLinkMapper) {
+        this.deepLinkMapper = deepLinkMapper
+    }
 }
 
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {
