@@ -1,8 +1,5 @@
-# Changelog
-
-## [v0.2.0] - 2024-04-22
+## [v0.4.0] - 2024-05-17
 
 ### Added
 
-- **Typesafe arguments**: The library now supports typesafe arguments for deep links, making it easier to work with deep link parameters. In order to use it the app/module needs to include kotlinx-serialization. To get the parameter value, you can use the `getArgument` method on the `DeepLink` object. The method will return the parameter value or null if the parameter is not present.
-- **BuildUrl**: The library now supports building URLs adding Serializable arguments. This is very handy for internal navigation. Use the `Rinku.buildUrl` to generate the url and pass it as argument to `handleDeepLink`.
+- **New handle method**: The user now can call `Rinku.handleDeepLink` using the applied filter and mapper. This is useful when the application needs to fire a url that came from a push notification or api call.
