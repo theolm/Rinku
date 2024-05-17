@@ -1,6 +1,5 @@
 package dev.theolm.rinku
 
-import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

@@ -19,9 +19,40 @@ object Rinku {
     internal var deepLinkFlow = MutableStateFlow<DeepLink?>(null)
         private set
 
+    /**
+     * Handle a deep link
+     * @param url The deep link to handle
+     */
     fun handleDeepLink(url: String) {
         rinkuScope.launch {
             deepLinkFlow.emit(DeepLink(url))
+        }
+    }
+
+    /**
+     * Handle a deep link with optional filter and mapper
+     * @param url The deep link to handle
+     * @param applyFilter Whether to apply the filter before handling the deep link
+     * @param applyMapper Whether to apply the mapper before handling the deep link
+     * @throws IllegalStateException If the filter or mapper is not set
+     */
+    fun handleDeepLink(url: String, applyFilter: Boolean = false, applyMapper: Boolean = false) {
+        if (applyFilter) {
+            deepLinkFilter?.let {
+                if (!it.isValid(url)) return
+            } ?: run {
+                throw IllegalStateException("DeepLinkFilter not set")
+            }
+        }
+
+        if (applyMapper) {
+            deepLinkMapper?.let {
+                handleDeepLink(it.map(url))
+            } ?: run {
+                throw IllegalStateException("DeepLinkMapper not set")
+            }
+        } else {
+            handleDeepLink(url)
         }
     }
 
