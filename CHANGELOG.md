@@ -1,5 +1,6 @@
-## [v0.4.0] - 2024-05-17
+## [v0.5.0] - 2024-05-21
 
-### Added
+### Update
 
-- **New handle method**: The user now can call `Rinku.handleDeepLink` using the applied filter and mapper. This is useful when the application needs to fire a url that came from a push notification or api call.
+- **Kotlin 2.0 support**: Updates the library to kotlin 2.0.0
+- **Compose Multiplatform**: Updates to compose multiplatform 1.9.10
