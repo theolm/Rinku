@@ -24,7 +24,7 @@ fun ComponentActivity.Rinku(
 
     DisposableEffect(Unit) {
         val listener = Consumer<Intent> {
-            it?.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
+            it.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
         }
 
         this@Rinku.addOnNewIntentListener(listener)

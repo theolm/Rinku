@@ -18,7 +18,7 @@ fun ComponentActivity.RinkuInit(
     intent.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
 
     val listener = Consumer<Intent> {
-        it?.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
+        it.treatAndFireDeepLink(deepLinkFilter, deepLinkMapper)
     }
 
     lifecycle.addObserver(
