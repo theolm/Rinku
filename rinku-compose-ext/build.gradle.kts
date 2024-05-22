@@ -3,8 +3,10 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
+    id("org.jetbrains.kotlin.multiplatform")
     id("android-lib-setup")
-    id("compose-module-setup")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("publish-setup")
     id("detekt-setup")
 }
@@ -22,6 +24,11 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.rinku.rinkuCore)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
             implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {

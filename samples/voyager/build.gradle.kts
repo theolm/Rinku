@@ -3,6 +3,8 @@ import plugins.setupKmpTargets
 
 plugins {
     id("sample-setup")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("detekt-setup")
     alias(libs.plugins.kotlinSerialization)
 }
@@ -30,6 +32,11 @@ kotlin {
 
         commonMain.dependencies {
             api(projects.rinku.rinkuCore)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
             implementation(projects.rinku.rinkuComposeExt)
             implementation(projects.samples.common)
             implementation(libs.voyager.navigator)

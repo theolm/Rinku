@@ -2,6 +2,8 @@ import config.Config
 
 plugins {
     id("sample-setup")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("kotlin-parcelize")
     id("detekt-setup")
     alias(libs.plugins.kotlinSerialization)
@@ -31,6 +33,11 @@ kotlin {
             implementation(projects.rinku.rinkuCore)
             implementation(projects.rinku.rinkuComposeExt)
             implementation(projects.samples.common)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
             implementation(libs.kotlinx.serialization)

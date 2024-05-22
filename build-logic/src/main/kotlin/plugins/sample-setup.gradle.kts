@@ -3,8 +3,6 @@ import config.Config
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.compose")
-    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -37,18 +35,6 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-        }
-    }
-}
-
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
         }
     }
 }
