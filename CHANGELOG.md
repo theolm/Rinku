@@ -1,6 +1,5 @@
-## [v0.5.0] - 2024-05-21
+## [v0.5.1] - 2024-07-02
 
 ### Update
 
-- **Kotlin 2.0 support**: Updates the library to kotlin 2.0.0
-- **Compose Multiplatform**: Updates to compose multiplatform 1.9.10
+- Exposes the `data` property in the `Deeplink` class. This property contains the data that was passed to build the deeplink (original URL).
