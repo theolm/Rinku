@@ -14,5 +14,5 @@ object Config {
     // Libraries versions
     const val artifactId = "rinku"
     const val groupId = "dev.theolm"
-    const val libVersion = "0.5.1"
+    const val libVersion = "0.6.0"
 }

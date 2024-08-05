@@ -1,5 +1,5 @@
-## [v0.5.1] - 2024-07-02
+## [v0.6.0] - 2024-08-05
 
 ### Update
 
-- Exposes the `data` property in the `Deeplink` class. This property contains the data that was passed to build the deeplink (original URL).
+- Update dependencies to the latest versions
