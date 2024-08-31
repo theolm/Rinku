@@ -1,4 +1,4 @@
-## [v0.6.0] - 2024-08-05
+Rinku is now consider stable and ready for production use.
 
 ### Update
 
