@@ -27,7 +27,7 @@ jobs:
           bodyFile: "CHANGELOG.md"
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'temurin'
