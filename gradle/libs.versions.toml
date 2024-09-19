@@ -14,7 +14,7 @@ detekt = "1.23.7"
 composeRules = "1.4.0"
 coroutines = "1.8.1"
 datetime = "0.6.1"
-serialization = "1.7.2"
+serialization = "1.7.3"
 
 
 [libraries]
