@@ -15,6 +15,14 @@ fun KotlinMultiplatformExtension.setupKmpTargets(
         }
     }
 
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = Config.javaVersion.toString()
+            }
+        }
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
