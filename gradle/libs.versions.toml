@@ -7,7 +7,6 @@ compose-plugin = "1.6.11"
 kotlin = "2.0.20"
 voyager = "1.0.0"
 decompose = "3.1.0"
-decompose-compose-ext = "2.2.3"
 ktor = "2.3.12"
 mavenPublish = "0.29.0"
 detekt = "1.23.6"
@@ -34,7 +33,7 @@ compose-compiler-plugin = { module = "org.jetbrains.kotlin:compose-compiler-grad
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
-decompose-compose = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose-compose-ext" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 gradleMavenPublish-gradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "mavenPublish" }
 detekt-gradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
