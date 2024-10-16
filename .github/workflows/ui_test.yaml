@@ -23,7 +23,8 @@ jobs:
       - name: Build voyager
         run: ./gradlew :samples:voyager:assembleDebug
 
-      - uses: actions/upload-artifact@v4
+      - name: Run Maestro tests
+        uses: ./.github/actions/run_maestro
         with:
-          name: voyager-debug.apk
-          path: samples/voyager/build/outputs/apk/debug/
+          apk-path: 'samples/voyager/build/outputs/apk/debug/voyager-debug.apk'
+          command: 'test ./maestro/android-voyager-flow.yaml'

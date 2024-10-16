@@ -1,17 +1,17 @@
-# This task expects an artifact android-beta to be available in the workflow.
-# It downloads the APK, installs Maestro, and runs the tests in the Android emulator.
-# The test results are saved in a JUnit XML file and the video is saved in the tests directory.
-
 name: 'run-maestro'
-description: 'Run a given Maestro flow/subflow in the Android emulator. Tha action outputs a report and a video.'
+description: 'draft'
 
 inputs:
+  apk-path:
+      description: 'Path to the APK'
+      required: true
+  command:
+    description: 'Command to run on maestro (e.g. maestro {command})'
+    required: true
   test-name:
-      description: 'Name of the maestro test'
-      required: true
-  test-path:
-      description: 'Path to the Maestro test (It can be a single flow or a floder)'
-      required: true
+    description: 'Name of the maestro test. The report will have this name.'
+    required: false
+    default: 'maestro-test'
   bit-rate:
     description: 'Bit rate for the screenrecord command'
     required: false
@@ -20,26 +20,10 @@ inputs:
     description: 'Resolution of the recorded video'
     required: false
     default: '360x780'
-  extra-args:
-    description: 'Maestro extra arguments (e.g --include-tags)'
-    required: false
-    default: ''
 
 runs:
   using: "composite"
   steps:
-    - name: Download APK
-      uses: actions/download-artifact@v4
-      with:
-        name: android-beta
-        path: androidApp/build/outputs/apk/beta/appDistribution
-
-    - name: Rename APK
-      shell: bash
-      run: | 
-        mv androidApp/build/outputs/apk/beta/appDistribution/androidApp-beta-appDistribution.apk maestro/app.apk
-        ls maestro/
-
     - name: Install Maestro
       shell: bash
       run: |
@@ -47,6 +31,7 @@ runs:
         export PATH="$PATH":"$HOME/.maestro/bin"
         maestro --version
 
+#todo: disable this step on mac machines
     - name: Enable KVM
       shell: bash
       run: |
@@ -67,15 +52,13 @@ runs:
         script: |
           #!/bin/bash
 
-          adb install ./maestro/app.apk
-          adb shell pm set-app-links --package com.upside.consumer.android.beta 1 www.getupside.com
-          adb shell pm set-app-links --package com.upside.consumer.android.beta 1 getupside.com
-
+          adb install ${{ inputs.apk-path }}
+    
           # Start screen recording with inputs for bit-rate and video resolution
           adb shell "screenrecord --bugreport --size ${{ inputs.video-res }} --bit-rate ${{ inputs.bit-rate }} /data/local/tmp/maestro.mp4 & echo \$! > /data/local/tmp/screenrecord_pid.txt" &
 
           # Run Maestro tests. Still needs to capture the exit status without stopping the script.
-          $HOME/.maestro/bin/maestro test --format junit --output ~/report_${{ inputs.test-name }}.xml ${{ inputs.extra-args }} ${{ inputs.test-path }} -e appId=com.upside.consumer.android.beta || true
+          $HOME/.maestro/bin/maestro ${{ inputs.command }} || true
 
           # Stop screen recording and pull the video file
           adb shell "kill -2 \$(cat /data/local/tmp/screenrecord_pid.txt)" || true
