@@ -12,17 +12,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-#      - uses: actions/setup-java@v4.1.0
-#        with:
-#          distribution: temurin
-#          java-version: 17
-#
-#      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v4
-#
-#      - name: Build voyager
-#        run: ./gradlew :samples:voyager:assembleDebug
-
       - name: Run Maestro tests
         uses: .github/actions/run_maestro
         with:
