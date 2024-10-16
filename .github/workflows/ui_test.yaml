@@ -1,4 +1,4 @@
-name: Release
+name: UI_tests
 on:
   pull_request:
     types: [ opened, synchronize, reopened ]
@@ -12,19 +12,19 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4.1.0
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Build voyager
-        run: ./gradlew :samples:voyager:assembleDebug
+#      - uses: actions/setup-java@v4.1.0
+#        with:
+#          distribution: temurin
+#          java-version: 17
+#
+#      - name: Setup Gradle
+#        uses: gradle/actions/setup-gradle@v4
+#
+#      - name: Build voyager
+#        run: ./gradlew :samples:voyager:assembleDebug
 
       - name: Run Maestro tests
-        uses: ./.github/actions/run_maestro
+        uses: .github/actions/run_maestro
         with:
-          apk-path: 'samples/voyager/build/outputs/apk/debug/voyager-debug.apk'
+          apk-path: '~/voyager-debug.apk'
           command: 'test ./maestro/android-voyager-flow.yaml'
