@@ -12,8 +12,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Print root
+
+
       - name: Run Maestro tests
-        uses: ~/.github/actions/run_maestro
+        uses: ./.github/actions/run_maestro
         with:
           apk-path: '~/voyager-debug.apk'
           command: 'test ./maestro/android-voyager-flow.yaml'
