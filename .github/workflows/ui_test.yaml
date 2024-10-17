@@ -16,7 +16,9 @@ jobs:
 
       - name: Print root
         shell: bash
-        run: ls
+        run: | 
+          pwd
+          ls
 
       - name: Run Maestro tests
         uses: ./.github/actions/run_maestro
