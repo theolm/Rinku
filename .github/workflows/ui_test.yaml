@@ -13,7 +13,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print root
-
+        shell: bash
+        run: ls
 
       - name: Run Maestro tests
         uses: ./.github/actions/run_maestro
