@@ -24,7 +24,8 @@ jobs:
 
       - uses: ncipollo/release-action@v1
         with:
-          bodyFile: "CHANGELOG.md"
+          generateReleaseNotes: true
+          draft: true
 
       - name: Setup Java
         uses: actions/setup-java@v4
