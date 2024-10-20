@@ -2,7 +2,7 @@ name: documentation
 on:
   push:
     branches:
-      - feature/documentation
+      - main
 permissions:
   contents: write
 jobs:
