@@ -1,3 +1,4 @@
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -10,6 +11,7 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
+import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import dev.theolm.rinku.DeepLink
 import dev.theolm.rinku.common.screens.FirstScreen
@@ -47,6 +49,11 @@ private fun MainScreen(deepLink: DeepLink?) {
             initialStack = deepLink.toScreenStack(),
             componentContext = DefaultComponentContext(LifecycleRegistry())
         )
+    }
+
+    val stack = component.stack.subscribeAsState()
+    BackHandler(enabled = stack.value.items.size > 1) {
+        component.onBackPress()
     }
 
     MaterialTheme {
