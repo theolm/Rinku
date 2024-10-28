@@ -1,0 +1,41 @@
+name: Ui Tests
+on: pull_request
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4.1.0
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build Voyager sample APK
+        id: voyager
+        run: ./gradlew :samples:voyager:assembleDebug
+
+      - name: Test Voyager Sample
+        if: success() && steps.voyager.conclusion == 'success'
+        uses: theolm/maestro-run@v0.3.1-alpha
+        with:
+          apk-path: ./samples/voyager/build/outputs/apk/debug/voyager-debug.apk
+          test-path: ./maestro/android-voyager-flow.yaml
+          report-name: 'voyager-report'
+          record: 'true'
+
+      - name: Build Decompose sample APK
+        if: always()
+        id: decompose
+        run: ./gradlew :samples:decompose:assembleDebug
+
+      - name: Test Decompose Sample
+        if: success() && steps.decompose.conclusion == 'success'
+        uses: theolm/maestro-run@v0.3.1-alpha
+        with:
+          apk-path: ./samples/decompose/build/outputs/apk/debug/decompose-debug.apk
+          test-path: ./maestro/android-decompose-flow.yaml
+          report-name: 'decompose-report'
+          record: 'true'
