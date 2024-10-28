@@ -42,7 +42,6 @@ class AppComponentImpl(
                     listOf(Config.First())
                 }
             },
-            handleBackButton = true,
             childFactory = ::child,
         )
 
