@@ -6,6 +6,49 @@ This guide presupposes the prior configuration of deeplinks within the native pl
 - [iOS URL scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app)
 - [iOS universal link](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app)
 
+### Installation Process
+The library is available via Maven Central
+```kt
+implementation("dev.theolm:rinku:<latest_version>")
+implementation("dev.theolm:rinku-compose-ext:<latest_version>")
+```
+
+#### Gradle Configuration
+
+In your `build.gradle.kts` file you need to:
+- Include Rinku in commonMain as an api (this is required to export it to iOS)
+- If you are using Compose multiplatform, also include the compose-extensions
+- Export the lib in the ios framework
+
+
+Example:
+```kt
+kotlin {
+    ...
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+        // Specify iOS targets
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            // Export of Rinku library to the iOS framework
+            export("dev.theolm:rinku:<latest_version>")
+            ...
+        }
+    }
+    ...
+    sourceSets {
+        commonMain.dependencies {
+            api("dev.theolm:rinku:<latest_version>")
+
+            // For compose multiplatform projects
+            implementation("dev.theolm:rinku-compose-ext:<latest_version>")
+        }
+    }
+}
+```
+
 ### Android setup
 The library provides two types of initialization (KMP only and Compose), you should use the one that fit your needs.
 
