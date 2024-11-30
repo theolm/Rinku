@@ -10,7 +10,7 @@ import kotlinx.datetime.Clock
  * @property data The raw URI string used to create the deep link object.
  * @property timestamp The timestamp of the deep link creation. Defaults to the current time.
  */
-data class DeepLink internal constructor(
+data class DeepLink(
     val data: String,
     val timestamp: Long = Clock.System.now().toEpochMilliseconds()
 ) {
