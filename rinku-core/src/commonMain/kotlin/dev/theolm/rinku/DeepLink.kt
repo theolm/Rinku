@@ -2,7 +2,8 @@ package dev.theolm.rinku
 
 import io.ktor.http.URLBuilder
 import io.ktor.util.flattenEntries
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 /**
  * A data class representing a deep link, encapsulating various components of the URI.
@@ -10,6 +11,7 @@ import kotlinx.datetime.Clock
  * @property data The raw URI string used to create the deep link object.
  * @property timestamp The timestamp of the deep link creation. Defaults to the current time.
  */
+@OptIn(ExperimentalTime::class)
 data class DeepLink(
     val data: String,
     val timestamp: Long = Clock.System.now().toEpochMilliseconds()

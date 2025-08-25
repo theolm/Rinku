@@ -1,4 +1,5 @@
 import config.Config
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("sample-setup")
@@ -17,10 +18,8 @@ android {
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = Config.javaVersion.toString()
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.fromTarget(Config.javaVersion.toString()))
         }
     }
     sourceSets {
@@ -38,6 +37,7 @@ kotlin {
             implementation(compose.material)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
