@@ -16,7 +16,7 @@ Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep li
 ## Prerequisites
 
 - Kotlin Multiplatform project setup
-- For Android: Minimum SDK version 22
+- For Android: Minimum SDK version 23
 - For iOS: iOS 13.0 or later
 
 The library is available via Maven Central
