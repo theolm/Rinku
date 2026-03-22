@@ -2,7 +2,7 @@
 kotlin = "2.2.10"
 agp = "8.13.2"
 androidx-activityCompose = "1.10.1"
-activity-ktx = "1.10.1"
+activity-ktx = "1.13.0"
 compose = "1.9.0"
 compose-plugin = "1.8.2"
 voyager = "1.0.1"
