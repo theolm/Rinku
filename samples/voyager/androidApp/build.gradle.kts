@@ -4,25 +4,24 @@ plugins {
     id("android-app-setup")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("kotlin-parcelize")
 }
 
 android {
     namespace = Config.applicationId
 
     defaultConfig {
-        applicationId = Config.applicationId + ".decompose"
+        applicationId = Config.applicationId + ".voyager"
     }
 }
 
 dependencies {
-    implementation(projects.samples.decompose)
+    implementation(projects.samples.voyager.shared)
     implementation(projects.samples.common)
     implementation(projects.rinku.rinkuCore)
     implementation(projects.rinku.rinkuComposeExt)
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.decompose)
-    implementation(libs.decompose.compose)
+    implementation(libs.voyager.navigator)
+    implementation(libs.voyager.screenModel)
     implementation(libs.kotlinx.serialization)
 }
