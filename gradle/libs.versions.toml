@@ -11,7 +11,7 @@ ktor = "3.4.1"
 mavenPublish = "0.31.0"
 detekt = "1.23.8"
 composeRules = "1.4.0"
-coroutines = "1.10.2"
+coroutines = "1.11.0"
 datetime = "0.8.0"
 serialization = "1.11.0"
 
