@@ -1,8 +1,9 @@
 import config.Config
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import plugins.setupKmpTargets
 
 plugins {
-    id("sample-setup")
+    id("android-kmp-lib-setup")
+    alias(libs.plugins.kotlinMultiplatform)
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
     id("kotlin-parcelize")
@@ -10,18 +11,15 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
 }
 
-android {
-    defaultConfig {
-        applicationId = Config.applicationId + ".decompose"
-    }
-}
-
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(Config.javaVersion.toString()))
-        }
+    setupKmpTargets()
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".sample.decompose"
     }
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)

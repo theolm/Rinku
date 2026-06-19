@@ -2,17 +2,12 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
-    id("sample-setup")
+    id("android-kmp-lib-setup")
+    alias(libs.plugins.kotlinMultiplatform)
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
     id("detekt-setup")
     alias(libs.plugins.kotlinSerialization)
-}
-
-android {
-    defaultConfig {
-        applicationId = Config.applicationId + ".voyager"
-    }
 }
 
 kotlin {
@@ -23,6 +18,12 @@ kotlin {
             it.isStatic = true
         }
     )
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".sample.voyager"
+    }
 
     sourceSets {
         androidMain.dependencies {

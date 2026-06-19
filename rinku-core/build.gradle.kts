@@ -1,21 +1,22 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import config.Config
 import plugins.setupKmpTargets
 
 plugins {
+    id("android-kmp-lib-setup")
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
-    id("android-lib-setup")
     id("publish-setup")
     id("detekt-setup")
 }
 
-android {
-    namespace = Config.applicationId
-}
-
 kotlin {
     setupKmpTargets()
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".core"
+    }
 
     sourceSets {
         androidMain.dependencies {
@@ -37,7 +38,7 @@ kotlin {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    publishToMavenCentral()
     signAllPublications()
 
     val version = System.getenv("VERSION") ?: Config.libVersion
