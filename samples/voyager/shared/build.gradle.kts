@@ -1,27 +1,30 @@
 import config.Config
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import plugins.setupKmpTargets
 
 plugins {
-    id("sample-setup")
+    id("android-kmp-lib-setup")
+    alias(libs.plugins.kotlinMultiplatform)
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("kotlin-parcelize")
     id("detekt-setup")
     alias(libs.plugins.kotlinSerialization)
 }
 
-android {
-    defaultConfig {
-        applicationId = Config.applicationId + ".decompose"
-    }
-}
-
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(Config.javaVersion.toString()))
+    setupKmpTargets(
+        onBinariesFramework = {
+            it.export(projects.rinku.rinkuCore)
+            it.baseName = "ComposeApp"
+            it.isStatic = true
         }
+    )
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".sample.voyager"
     }
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
@@ -29,9 +32,7 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(projects.rinku.rinkuCore)
-            implementation(projects.rinku.rinkuComposeExt)
-            implementation(projects.samples.common)
+            api(projects.rinku.rinkuCore)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -39,8 +40,10 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
-            implementation(libs.decompose)
-            implementation(libs.decompose.compose)
+            implementation(projects.rinku.rinkuComposeExt)
+            implementation(projects.samples.common)
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.screenModel)
             implementation(libs.kotlinx.serialization)
         }
     }

@@ -2,27 +2,23 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
-    id("sample-setup")
+    id("android-kmp-lib-setup")
+    alias(libs.plugins.kotlinMultiplatform)
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("kotlin-parcelize")
     id("detekt-setup")
     alias(libs.plugins.kotlinSerialization)
 }
 
-android {
-    defaultConfig {
-        applicationId = Config.applicationId + ".voyager"
-    }
-}
-
 kotlin {
-    setupKmpTargets(
-        onBinariesFramework = {
-            it.export(projects.rinku.rinkuCore)
-            it.baseName = "ComposeApp"
-            it.isStatic = true
-        }
-    )
+    setupKmpTargets()
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".sample.decompose"
+    }
 
     sourceSets {
         androidMain.dependencies {
@@ -31,7 +27,9 @@ kotlin {
         }
 
         commonMain.dependencies {
-            api(projects.rinku.rinkuCore)
+            implementation(projects.rinku.rinkuCore)
+            implementation(projects.rinku.rinkuComposeExt)
+            implementation(projects.samples.common)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -39,10 +37,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
-            implementation(projects.rinku.rinkuComposeExt)
-            implementation(projects.samples.common)
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.screenModel)
+            implementation(libs.decompose)
+            implementation(libs.decompose.compose)
             implementation(libs.kotlinx.serialization)
         }
     }

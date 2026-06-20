@@ -5,6 +5,6 @@ The library includes two illustrative examples utilizing the foremost multiplatf
 - [Voyager sample](https://github.com/theolm/Rinku/tree/main/samples/voyager)
 - [Decompose sample](https://github.com/theolm/Rinku/tree/main/samples/decompose)
 
-*Note: Only the Voyager sample includes an iOS application. Nonetheless, the setup for Decompose would mirror that of Voyager.*
+*Note: Only the Voyager sample includes an iOS application (at `samples/voyager/iosApp`). Nonetheless, the setup for Decompose would mirror that of Voyager.*
 
 *Note 2: Both examples are using Compose multiplatform.*

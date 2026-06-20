@@ -2,16 +2,11 @@ import config.Config
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.multiplatform")
 }
 
 android {
     namespace = Config.applicationId
     compileSdk = Config.compileSdk
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         applicationId = Config.applicationId

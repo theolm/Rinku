@@ -15,13 +15,13 @@ jobs:
 
       - name: Build Voyager sample APK
         id: voyager
-        run: ./gradlew :samples:voyager:assembleDebug
+        run: ./gradlew :samples:voyager:androidApp:assembleDebug
 
       - name: Test Voyager Sample
         if: success() && steps.voyager.conclusion == 'success'
         uses: theolm/maestro-run@v0.3.1-alpha
         with:
-          apk-path: ./samples/voyager/build/outputs/apk/debug/voyager-debug.apk
+          apk-path: ./samples/voyager/androidApp/build/outputs/apk/debug/voyager-debug.apk
           test-path: ./maestro/android-voyager-flow.yaml
           report-name: 'voyager-report'
           record: 'true'
@@ -29,13 +29,13 @@ jobs:
       - name: Build Decompose sample APK
         if: always()
         id: decompose
-        run: ./gradlew :samples:decompose:assembleDebug
+        run: ./gradlew :samples:decompose:androidApp:assembleDebug
 
       - name: Test Decompose Sample
         if: success() && steps.decompose.conclusion == 'success'
         uses: theolm/maestro-run@v0.3.1-alpha
         with:
-          apk-path: ./samples/decompose/build/outputs/apk/debug/decompose-debug.apk
+          apk-path: ./samples/decompose/androidApp/build/outputs/apk/debug/decompose-debug.apk
           test-path: ./maestro/android-decompose-flow.yaml
           report-name: 'decompose-report'
           record: 'true'

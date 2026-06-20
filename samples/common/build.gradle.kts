@@ -2,20 +2,22 @@ import config.Config
 import plugins.setupKmpTargets
 
 plugins {
+    id("android-kmp-lib-setup")
     alias(libs.plugins.kotlinSerialization)
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("android-lib-setup")
     id("detekt-setup")
-}
-
-android {
-    namespace = Config.applicationId + ".common"
 }
 
 kotlin {
     setupKmpTargets()
+
+    android {
+        compileSdk = Config.compileSdk
+        minSdk = Config.minSdk
+        namespace = Config.applicationId + ".sample.common"
+    }
 
     sourceSets {
         commonMain.dependencies {

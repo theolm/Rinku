@@ -9,12 +9,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 fun KotlinMultiplatformExtension.setupKmpTargets(
     onBinariesFramework: (Framework) -> Unit = {}
 ) {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(Config.javaVersion.toString()))
-        }
-    }
-
     jvm {
         compilerOptions {
             jvmTarget.set(JvmTarget.fromTarget(Config.javaVersion.toString()))

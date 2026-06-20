@@ -21,9 +21,11 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":samples:voyager",
-    ":samples:decompose",
     ":samples:common",
+    ":samples:voyager:shared",
+    ":samples:voyager:androidApp",
+    ":samples:decompose:shared",
+    ":samples:decompose:androidApp",
     ":rinku-core",
     ":rinku-compose-ext",
 )
