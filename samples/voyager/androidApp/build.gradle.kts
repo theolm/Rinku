@@ -6,6 +6,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+base {
+    archivesName.set("voyager")
+}
+
 android {
     namespace = Config.applicationId
 

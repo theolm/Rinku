@@ -7,6 +7,10 @@ plugins {
     id("kotlin-parcelize")
 }
 
+base {
+    archivesName.set("decompose")
+}
+
 android {
     namespace = Config.applicationId
 
