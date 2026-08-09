@@ -114,7 +114,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 ```
 
 ### Common setup
-In the common code you just need to listen to the deeplinks and treat them as you need. Once the application (Android or iOS) recieves a deeplink it will parse it into a `Deeplink` data class and pass it into the listener. Use the listener that suite your project.
+In the common code you just need to listen to the deeplinks and treat them as you need. Once the application (Android or iOS) receives a deeplink it will parse it into a `Deeplink` data class and pass it into the listener. Use the listener that suite your project.
 
 #### Using Compose
 

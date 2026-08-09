@@ -1,7 +1,7 @@
 # Internal Deeplink Filter
 
 Rinku provides a simple way to filter unwanted external deeplinks.
-Instead of filter deeplinks providing specific paths in the AndroidManifest and info.plist you implment the interface `DeepLinkFilter` and pass it into Rinku initialization. With this configuration, when the app recieves a not valid deeplink rinku is not going to handle it. This is usefull to block internal deeplinks from external access without having to include it in platform specific configuration.
+Instead of filter deeplinks providing specific paths in the AndroidManifest and info.plist you implement the interface `DeepLinkFilter` and pass it into Rinku initialization. With this configuration, when the app receives a not valid deeplink rinku is not going to handle it. This is useful to block internal deeplinks from external access without having to include it in platform specific configuration.
 
 ### Deeplink mapper
 This feature is used to map external deeplinks into internal deeplinks.
