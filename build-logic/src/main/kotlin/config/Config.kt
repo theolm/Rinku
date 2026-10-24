@@ -6,7 +6,7 @@ object Config {
     const val applicationId = "dev.theolm.rinku"
     const val minSdk = 23
     const val targetSdk = 35
-    const val compileSdk = 36
+    const val compileSdk = 37
     const val versionCode = 1
     const val versionName = "1.0.0"
     val javaVersion = JavaVersion.VERSION_17
