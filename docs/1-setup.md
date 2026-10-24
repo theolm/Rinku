@@ -5,6 +5,7 @@ This guide presupposes the prior configuration of deeplinks within the native pl
 - [Android deeplink](https://developer.android.com/training/app-links/deep-linking?hl=pt-br)
 - [iOS URL scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app)
 - [iOS universal link](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app)
+- [Desktop URL schemes and single-instance setup](6-desktop.md)
 
 ### Installation Process
 The library is available via Maven Central
