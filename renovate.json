@@ -2,14 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ],
-  "packageRules": [
-    {
-      "description": "Compose Multiplatform 1.11+ no longer publishes iosX64 artifacts, and this project still supports the iosX64 target. Revisit once iosX64 is dropped.",
-      "matchPackageNames": [
-        "/^org\\.jetbrains\\.compose/"
-      ],
-      "allowedVersions": "<1.11.0"
-    }
   ]
 }

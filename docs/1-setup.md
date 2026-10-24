@@ -15,6 +15,8 @@ implementation("dev.theolm:rinku-compose-ext:<latest_version>")
 
 #### Gradle Configuration
 
+Both Rinku modules support `iosArm64` (physical devices) and `iosSimulatorArm64` (Apple Silicon simulators). The `iosX64` target (Intel Mac simulators) is no longer supported.
+
 In your `build.gradle.kts` file you need to:
 - Include Rinku in commonMain as an api (this is required to export it to iOS)
 - If you are using Compose multiplatform, also include the compose-extensions
@@ -26,7 +28,6 @@ Example:
 kotlin {
     ...
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
         // Specify iOS targets
