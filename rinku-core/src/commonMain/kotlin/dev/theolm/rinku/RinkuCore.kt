@@ -8,6 +8,8 @@ import dev.theolm.rinku.models.DeepLinkParam
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
@@ -114,10 +116,12 @@ object Rinku {
  */
 suspend fun listenForDeepLinks(listener: (DeepLink) -> Unit) {
     Rinku.hasPendingLinks.filter { it }.collect {
-        var link = Rinku.consumeDeepLink()
-        while (link != null) {
+        while (true) {
+            // Check before every dequeue so a callback that cancels the collector
+            // neither receives more links nor consumes them from the next listener.
+            currentCoroutineContext().ensureActive()
+            val link = Rinku.consumeDeepLink() ?: break
             listener(link)
-            link = Rinku.consumeDeepLink()
         }
     }
 }

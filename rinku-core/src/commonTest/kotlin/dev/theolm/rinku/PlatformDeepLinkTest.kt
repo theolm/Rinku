@@ -1,5 +1,7 @@
 package dev.theolm.rinku
 
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
@@ -39,6 +41,27 @@ class PlatformDeepLinkTest {
         Rinku.enqueuePlatformDeepLink("rinku://second")
         runCurrent()
         assertEquals(listOf("rinku://first", "rinku://second"), received)
+    }
+
+    @Test
+    fun `cancellation during callback stops delivery and leaves links pending`() = runTest {
+        val urls = listOf("rinku://first", "rinku://second", "rinku://third")
+        urls.forEach { assertTrue(Rinku.enqueuePlatformDeepLink(it)) }
+        val received = mutableListOf<String>()
+        val job = launch(start = CoroutineStart.LAZY) {
+            listenForDeepLinks {
+                received += it.data
+                cancel()
+            }
+        }
+        job.start()
+        job.join()
+        assertEquals(listOf("rinku://first"), received)
+
+        val remaining = mutableListOf<String>()
+        backgroundScope.launch { listenForDeepLinks { remaining += it.data } }
+        runCurrent()
+        assertEquals(urls.drop(1), remaining)
     }
 
     @Test
