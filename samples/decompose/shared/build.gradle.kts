@@ -27,6 +27,7 @@ kotlin {
         }
 
         commonMain.dependencies {
+            implementation(libs.compose.ui.backhandler)
             implementation(projects.rinku.rinkuCore)
             implementation(projects.rinku.rinkuComposeExt)
             implementation(projects.samples.common)

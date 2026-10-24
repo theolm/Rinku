@@ -19,6 +19,9 @@ kotlin {
     }
 
     sourceSets {
+        jvmMain.dependencies {
+            implementation(libs.kotlinx.coroutines.swing)
+        }
         androidMain.dependencies {
             implementation(libs.androidx.activity.ktx)
         }
@@ -32,6 +35,12 @@ kotlin {
             implementation(kotlin("test"))
             implementation(libs.kotlinx.coroutines.test)
         }
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    doFirst {
+        systemProperty("rinku.test.classpath", classpath.asPath)
     }
 }
 

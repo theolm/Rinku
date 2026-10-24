@@ -1,0 +1,32 @@
+name: Desktop tests
+on: pull_request
+
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - name: Test core and compile desktop samples
+        shell: bash
+        run: >-
+          ./gradlew :rinku-core:jvmTest :rinku-compose-ext:compileKotlinJvm
+          :samples:voyager:desktopApp:jvmJar :samples:decompose:desktopApp:jvmJar
+      - name: Check iOS regression
+        if: runner.os == 'macOS'
+        run: ./gradlew :rinku-core:iosSimulatorArm64Test :rinku-compose-ext:compileKotlinIosSimulatorArm64
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-tests-${{ matrix.os }}
+          path: rinku-core/build/reports/tests/jvmTest

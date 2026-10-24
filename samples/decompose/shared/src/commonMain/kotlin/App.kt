@@ -1,4 +1,3 @@
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -7,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.slide
@@ -43,6 +43,7 @@ fun App() {
  * It contains a stack of screens.
  */
 @Composable
+@OptIn(androidx.compose.ui.ExperimentalComposeUiApi::class)
 private fun MainScreen(deepLink: DeepLink?) {
     val component = remember(deepLink) {
         AppComponentImpl(

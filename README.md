@@ -4,12 +4,12 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/theolm/rinku)
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep link handling across iOS and Android platforms. By abstracting platform-specific details, Rinku enables developers to manage deep links in a unified manner, enhancing code reuse and maintaining consistency across platforms.
+Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep link handling across iOS, Android, and JVM desktop (macOS, Windows, and Linux). By abstracting platform-specific details, Rinku enables developers to manage deep links in a unified manner, enhancing code reuse and maintaining consistency across platforms.
 
 
 ## Core Features
 
-- **Unified Deep Link Management:** Architect your deep link logic once, and execute seamlessly across iOS and Android platforms.
+- **Unified Deep Link Management:** Architect your deep link logic once, and execute across iOS, Android, and JVM desktop platforms.
 - **Simplified Integration:** Designed for rapid setup with minimal configuration requirements, ensuring a smooth start.
 - **Universal Compatibility with Navigation Libraries:** Rinku's architecture is designed for compatibility with any navigation library (Voyager, Decompose, custom solutions, etc.). It delegates the parsing and navigation logic to the application, permitting seamless integration and enhanced flexibility.
 
@@ -19,6 +19,7 @@ Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep li
 - For Android: Minimum SDK version 23
 - For iOS: iOS 13.0 or later
 - Supported iOS architectures: `iosArm64` and `iosSimulatorArm64`. Intel Mac simulators (`iosX64`) are no longer supported by either module.
+- For desktop: JVM 17 or later. See the [desktop setup guide](docs/6-desktop.md) for URL schemes, single-instance delivery, and packaging.
 
 The library is available via Maven Central
 ```kt
@@ -81,8 +82,8 @@ For type-safe arguments, custom URL schemes, filters, and iOS setup, see the [fu
 The `samples/` directory contains runnable examples demonstrating integration with popular navigation libraries:
 
 - `samples/common` — Shared UI components and screen definitions used by both samples
-- `samples/voyager` — [Voyager](https://voyager.adriel.cafe/) integration (shared module, Android app, iOS app)
-- `samples/decompose` — [Decompose](https://github.com/arkivanov/Decompose) integration (shared module, Android app)
+- `samples/voyager` — [Voyager](https://voyager.adriel.cafe/) integration (shared module, Android app, iOS app, desktop app)
+- `samples/decompose` — [Decompose](https://github.com/arkivanov/Decompose) integration (shared module, Android app, desktop app)
 
 ## Documentation
 You can find the full documentation [here](https://theolm.dev/Rinku/)

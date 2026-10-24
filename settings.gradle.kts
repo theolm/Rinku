@@ -24,8 +24,10 @@ include(
     ":samples:common",
     ":samples:voyager:shared",
     ":samples:voyager:androidApp",
+    ":samples:voyager:desktopApp",
     ":samples:decompose:shared",
     ":samples:decompose:androidApp",
+    ":samples:decompose:desktopApp",
     ":rinku-core",
     ":rinku-compose-ext",
 )
