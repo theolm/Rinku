@@ -18,6 +18,7 @@ Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep li
 - Kotlin Multiplatform project setup
 - For Android: Minimum SDK version 23
 - For iOS: iOS 13.0 or later
+- Supported iOS architectures: `iosArm64` and `iosSimulatorArm64`. Intel Mac simulators (`iosX64`) are no longer supported by either module.
 
 The library is available via Maven Central
 ```kt
