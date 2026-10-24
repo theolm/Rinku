@@ -19,8 +19,6 @@ jobs:
 
       - name: Fetch Sources
         uses: actions/checkout@v7
-        with:
-          ref: ${{ github.event.release.tag_name }}
 
       - uses: ncipollo/release-action@v1
         with:
