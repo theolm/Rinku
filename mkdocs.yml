@@ -1,4 +1,5 @@
 site_name: Rinku Documentation
+site_url: https://theolm.github.io/Rinku/
 theme:
   name: material
   font:

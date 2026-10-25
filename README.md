@@ -27,7 +27,7 @@ implementation("dev.theolm:rinku:<latest_version>")
 implementation("dev.theolm:rinku-compose-ext:<latest_version>")
 ```
 
-> For iOS, Swift export, filters, mappers, and other platforms, see the [full documentation](https://theolm.dev/Rinku/1-setup/).
+> For iOS, Swift export, filters, mappers, and other platforms, see the [full documentation](https://theolm.github.io/Rinku/1-setup/).
 
 ## Quick Start
 
@@ -75,7 +75,7 @@ deepLink?.pathSegments       // ["second", "third"]
 deepLink?.parameters         // { "user" = "{\"name\":\"Theo\"}" }
 ```
 
-For type-safe arguments, custom URL schemes, filters, and iOS setup, see the [full documentation](https://theolm.dev/Rinku/).
+For type-safe arguments, custom URL schemes, filters, and iOS setup, see the [full documentation](https://theolm.github.io/Rinku/).
 
 ## Samples
 
@@ -86,7 +86,7 @@ The `samples/` directory contains runnable examples demonstrating integration wi
 - `samples/decompose` — [Decompose](https://github.com/arkivanov/Decompose) integration (shared module, Android app, desktop app)
 
 ## Documentation
-You can find the full documentation [here](https://theolm.dev/Rinku/)
+You can find the full documentation [here](https://theolm.github.io/Rinku/)
 
 
 ## License
