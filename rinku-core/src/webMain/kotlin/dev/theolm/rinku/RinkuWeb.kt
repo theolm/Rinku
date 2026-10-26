@@ -33,8 +33,8 @@ class RinkuWeb(
         started = true
         try {
             window.addEventListener("popstate", popStateListener)
-            deepLinkFilter?.let { Rinku.setDeepLinkFilter(it) }
-            deepLinkMapper?.let { Rinku.setDeepLinkMapper(it) }
+            Rinku.setDeepLinkFilter(deepLinkFilter)
+            Rinku.setDeepLinkMapper(deepLinkMapper)
             if (captureInitialUrl) receiveCurrentUrl()
         } catch (error: Exception) {
             close()

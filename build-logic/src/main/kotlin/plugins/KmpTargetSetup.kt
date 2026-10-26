@@ -15,7 +15,10 @@ fun KotlinMultiplatformExtension.setupKmpTargets(
     js {
         browser {
             testTask {
-                useKarma { useChromeHeadless() }
+                useKarma {
+                    if (System.getenv("GITHUB_ACTIONS") == "true") useChromeHeadlessNoSandbox()
+                    else useChromeHeadless()
+                }
             }
         }
     }
@@ -25,7 +28,10 @@ fun KotlinMultiplatformExtension.setupKmpTargets(
         }
         browser {
             testTask {
-                useKarma { useChromeHeadless() }
+                useKarma {
+                    if (System.getenv("GITHUB_ACTIONS") == "true") useChromeHeadlessNoSandbox()
+                    else useChromeHeadless()
+                }
             }
         }
     }

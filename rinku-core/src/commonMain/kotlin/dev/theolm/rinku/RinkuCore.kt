@@ -99,11 +99,11 @@ object Rinku {
     fun buildUrl(url: String, vararg parameters: DeepLinkParam<*>) =
         UrlBuilder.buildUrl(url, *parameters)
 
-    internal fun setDeepLinkFilter(deepLinkFilter: DeepLinkFilter) {
+    internal fun setDeepLinkFilter(deepLinkFilter: DeepLinkFilter?) {
         this.deepLinkFilter = deepLinkFilter
     }
 
-    internal fun setDeepLinkMapper(deepLinkMapper: DeepLinkMapper) {
+    internal fun setDeepLinkMapper(deepLinkMapper: DeepLinkMapper?) {
         this.deepLinkMapper = deepLinkMapper
     }
 

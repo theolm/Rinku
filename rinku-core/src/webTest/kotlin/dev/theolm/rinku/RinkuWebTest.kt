@@ -205,6 +205,34 @@ class RinkuWebTest {
         assertNull(Rinku.consumeDeepLink())
     }
 
+    @Test
+    fun replacementWithoutConfigurationClearsRegisteredFilterAndMapper() {
+        val configured = adapter(
+            captureInitialUrl = false,
+            filter = object : DeepLinkFilter {
+                override fun isValid(url: String) = false
+            },
+            mapper = object : DeepLinkMapper {
+                override fun map(url: String) = "https://example.com/old"
+            },
+        )
+        configured.start()
+        configured.close()
+        adapter(captureInitialUrl = false).start()
+
+        // Explicit opt-in must fail when the current adapter has no configuration,
+        // rather than silently invoking callbacks retained from the previous adapter.
+        assertFailsWith<IllegalStateException> {
+            Rinku.handleDeepLink(window.location.href, applyFilter = true)
+        }
+        assertFailsWith<IllegalStateException> {
+            Rinku.handleDeepLink(window.location.href, applyMapper = true)
+        }
+        popState()
+        assertEquals(window.location.href, Rinku.consumeDeepLink()?.data)
+        assertNull(Rinku.consumeDeepLink())
+    }
+
     private suspend fun traverse(action: () -> Unit) {
         val event = CompletableDeferred<Unit>()
         val listener: (Event) -> Unit = { event.complete(Unit) }
