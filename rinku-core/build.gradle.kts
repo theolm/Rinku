@@ -19,6 +19,11 @@ kotlin {
     }
 
     sourceSets {
+        named("webMain") {
+            dependencies {
+                implementation(libs.kotlinx.browser)
+            }
+        }
         jvmMain.dependencies {
             implementation(libs.kotlinx.coroutines.swing)
         }

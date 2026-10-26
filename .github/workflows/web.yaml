@@ -1,0 +1,49 @@
+name: Web tests
+on: pull_request
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [js, wasmJs]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+      - name: Test core and Compose adapter in Chrome
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+        run: >-
+          ./gradlew --max-workers=1 -Pkotlin.daemon.jvmargs=-Xmx4g
+          :rinku-core:${{ matrix.target }}BrowserTest
+          :rinku-compose-ext:${{ matrix.target }}BrowserTest
+      - name: Bundle both navigation samples
+        run: >-
+          ./gradlew --max-workers=1 -Pkotlin.daemon.jvmargs=-Xmx4g
+          :samples:voyager:webApp:${{ matrix.target }}BrowserDistribution
+          :samples:decompose:webApp:${{ matrix.target }}BrowserDistribution
+      - name: Validate Web publication metadata
+        if: matrix.target == 'wasmJs'
+        run: >-
+          ./gradlew :rinku-core:generateMetadataFileForJsPublication
+          :rinku-core:generateMetadataFileForWasmJsPublication
+          :rinku-compose-ext:generateMetadataFileForJsPublication
+          :rinku-compose-ext:generateMetadataFileForWasmJsPublication
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-tests-${{ matrix.target }}
+          path: |
+            rinku-core/build/reports/tests/${{ matrix.target }}BrowserTest
+            rinku-compose-ext/build/reports/tests/${{ matrix.target }}BrowserTest
