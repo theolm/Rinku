@@ -89,6 +89,8 @@ The `samples/` directory contains runnable examples demonstrating integration wi
 ## Documentation
 You can find the full documentation [here](https://theolm.github.io/Rinku/)
 
+For coding agents, [llms.txt](https://theolm.github.io/Rinku/llms.txt) provides a concise overview and links to the Markdown documentation.
+
 
 ## License
 Rinku is released under the MIT License. See the LICENSE file for more details.
