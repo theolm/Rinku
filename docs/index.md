@@ -19,3 +19,7 @@ Coding agents can use [llms.txt](llms.txt) for a concise overview and links to t
 ### 6. [Desktop support](./6-desktop.md)
 
 ### 7. [Web support](./7-web.md)
+
+### 8. [Public API reference](./api-reference.md)
+
+### 9. [Verified integration examples](./minimal-examples.md)

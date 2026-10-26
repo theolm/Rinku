@@ -26,6 +26,9 @@ theme:
       accent: deep orange
 
 markdown_extensions:
+  - pymdownx.snippets:
+      base_path: ['.']
+      check_paths: true
   - smarty
   - codehilite:
       guess_lang: false
