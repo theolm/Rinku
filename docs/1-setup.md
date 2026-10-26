@@ -53,7 +53,7 @@ kotlin {
 ```
 
 ### Android setup
-The library provides two types of initialization (KMP only and Compose), you should use the one that fit your needs.
+The library provides two types of initialization (KMP only and Compose). Use the one that fits your needs.
 
 #### KMP only
 On the Android app, inside the `onCreate`, call the extension `RinkuInit()`.
@@ -71,8 +71,8 @@ class MainActivity : ComponentActivity() {
 ```
 
 #### With Compose multiplatform
-First make sure you included the `rinku-compose-ext`in your `commonMain`.
-On the Android app inside the `setContent` use `ComponentActivity.Riku` extension to wrap the root of your app.
+First, make sure you included `rinku-compose-ext` in your `commonMain` dependencies.
+In the Android app, inside `setContent`, use the `ComponentActivity.Rinku` extension to wrap the root of your app.
 
 ```kotlin
 class MainActivity : ComponentActivity() {
@@ -143,17 +143,28 @@ fun RootApp() {
 #### KMP only
 Just use the suspend function `listenForDeepLinks` and react as you will.
 
-Example inside a Decompose component:
+Example inside a Decompose component (navigation model, interface members, and the
+application-specific `toScreenStack()` extension are omitted). Create a coroutine scope
+for the component and cancel it when the component is destroyed:
 
 ```kotlin
+import com.arkivanov.essenty.lifecycle.doOnDestroy
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+
 class AppComponentImpl(
     private val initialStack: List<Config> = emptyList(),
     componentContext: ComponentContext,
 ) : AppComponent, ComponentContext by componentContext {
     private val navigation = StackNavigation<Config>()
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     init {
-        launch { initDeepLinkListener() }
+        lifecycle.doOnDestroy { scope.cancel() }
+        scope.launch { initDeepLinkListener() }
     }
 
     private suspend fun initDeepLinkListener() {

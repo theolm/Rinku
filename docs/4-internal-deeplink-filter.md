@@ -1,25 +1,71 @@
-# Internal Deeplink Filter
+# Deep Link Filters and Mappers
 
-Rinku provides a simple way to filter unwanted external deeplinks.
-Instead of filter deeplinks providing specific paths in the AndroidManifest and info.plist you implment the interface `DeepLinkFilter` and pass it into Rinku initialization. With this configuration, when the app recieves a not valid deeplink rinku is not going to handle it. This is usefull to block internal deeplinks from external access without having to include it in platform specific configuration.
+Rinku can reject unwanted external deep links after the platform delivers them to your
+application. Implement `DeepLinkFilter` and pass it to the platform initializer. A URL
+is processed only when `isValid` returns `true`.
 
-### Deeplink mapper
-This feature is used to map external deeplinks into internal deeplinks.
-Use case 1: Android and ios application has different deeplinks registered in marketing campaigns. The mapper can be used to map the external deeplink to unique internal deeplink, and the application can handle the deeplink accordingly in a unified way.
-Use case 2: External deeplink does not have the full path to represent a valid stack. Use the mapper to provide the full stack.
+The filter does **not** replace URL scheme registration, Android intent filters, or iOS
+URL scheme and Universal Link configuration. Those settings determine whether the OS
+delivers the URL to your app. A Rinku filter only controls subsequent processing; it
+does not authenticate the sender or replace authorization checks.
 
 ```kotlin
-// External deeplink rinku://dev.theolm/screenC/
-// The deeplink is missing A and B
+import dev.theolm.rinku.models.DeepLinkFilter
 
-// Implement and pass the mapper into Rinku init. This way the external deeplink will be mapped and can be handle in the commonMain.
+object ExampleFilter : DeepLinkFilter {
+    override fun isValid(url: String): Boolean =
+        url == "rinku://dev.theolm/screenC/"
+}
+```
+
+This example deliberately accepts one exact URL. Adapt validation to your supported
+schemes, hosts, paths, and parameters.
+
+### Deep link mapper
+
+A `DeepLinkMapper` transforms an accepted external URL into the internal URL your
+navigation expects. For example:
+
+- Android and iOS marketing links can map to one shared internal route.
+- A link to screen C can expand into the full navigation stack A → B → C.
+
+```kotlin
+import dev.theolm.rinku.models.DeepLinkMapper
+
 object ExampleMapper : DeepLinkMapper {
     override fun map(url: String): String {
         return if (url == "rinku://dev.theolm/screenC/") {
-            return "rinku://dev.theolm/screenA/screenB/screenC/"
+            "rinku://dev.theolm/screenA/screenB/screenC/"
         } else {
             url
         }
     }
 }
 ```
+
+### Initialization
+
+On Android, pass the objects to `RinkuInit` inside `ComponentActivity.onCreate`:
+
+```kotlin
+RinkuInit(
+    deepLinkFilter = ExampleFilter,
+    deepLinkMapper = ExampleMapper,
+)
+```
+
+Alternatively, use the Compose wrapper inside the activity's `setContent`:
+
+```kotlin
+Rinku(deepLinkFilter = ExampleFilter, deepLinkMapper = ExampleMapper) {
+    App()
+}
+```
+
+Use only one initialization approach. `RinkuIos`, `RinkuDesktop`, and `RinkuWeb` also
+accept `deepLinkFilter` and `deepLinkMapper`; see the [setup](1-setup.md),
+[desktop](6-desktop.md), and [Web](7-web.md) guides.
+
+External links are filtered **before** mapping, so validate the original external URL.
+Internal calls to `Rinku.handleDeepLink(url)` bypass both steps unless you explicitly
+enable `applyFilter` and/or `applyMapper`; see [internal deep links](2-firing-internal-deeplink.md).
