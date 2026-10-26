@@ -17,3 +17,7 @@ Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep li
 ### 6. [Desktop support](./6-desktop.md)
 
 ### 7. [Web support](./7-web.md)
+
+### 8. [Public API reference](./api-reference.md)
+
+### 9. [Verified integration examples](./minimal-examples.md)

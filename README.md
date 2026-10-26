@@ -89,6 +89,9 @@ The `samples/` directory contains runnable examples demonstrating integration wi
 ## Documentation
 You can find the full documentation [here](https://theolm.github.io/Rinku/)
 
+- [Public API reference](docs/api-reference.md): imports, signatures, defaults, exceptions, and lifecycle contracts.
+- [Verified integration examples](docs/minimal-examples.md): source-backed examples and platform verification commands.
+
 
 ## License
 Rinku is released under the MIT License. See the LICENSE file for more details.
