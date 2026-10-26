@@ -2,6 +2,8 @@
 
 Rinku is a lightweight Kotlin Multiplatform library designed to simplify deep link handling across iOS, Android, JVM desktop (macOS, Windows, and Linux), and Web (Kotlin/JS and Kotlin/Wasm browsers). By abstracting platform-specific details, Rinku enables developers to manage deep links in a unified manner, enhancing code reuse and maintaining consistency across platforms.
 
+Coding agents can use [llms.txt](llms.txt) for a concise overview and links to the Markdown documentation.
+
 ## Summary
 
 ### 1. [Setup](./1-setup.md)
