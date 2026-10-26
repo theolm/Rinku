@@ -20,6 +20,12 @@ kotlin {
     }
 
     sourceSets {
+        named("webMain") {
+            dependencies {
+                implementation(projects.rinku.rinkuComposeExt)
+                implementation(libs.kotlinx.browser)
+            }
+        }
         commonMain.dependencies {
             implementation(projects.rinku.rinkuCore)
             implementation(compose.runtime)

@@ -13,6 +13,15 @@ plugins {
 kotlin {
     setupKmpTargets()
 
+    // Compose's browser test runner requires executable bundling to load Skiko.
+    js {
+        binaries.executable()
+    }
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    wasmJs {
+        binaries.executable()
+    }
+
     android {
         compileSdk = Config.compileSdk
         minSdk = Config.minSdk
@@ -20,6 +29,11 @@ kotlin {
     }
 
     sourceSets {
+        named("webTest") {
+            dependencies {
+                implementation(libs.kotlinx.browser)
+            }
+        }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
         }

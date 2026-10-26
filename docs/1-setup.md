@@ -6,6 +6,7 @@ This guide presupposes the prior configuration of deeplinks within the native pl
 - [iOS URL scheme](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app)
 - [iOS universal link](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app)
 - [Desktop URL schemes and single-instance setup](6-desktop.md)
+- [Web browser history and SPA hosting](7-web.md)
 
 ### Installation Process
 The library is available via Maven Central
@@ -115,8 +116,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 ```
 
+### Web setup
+
+Use `RinkuWeb.start()` in your browser entry point or the Web Compose `Rinku { App() }`
+wrapper. Both JS and Wasm receive the initial URL and browser Back/Forward through the
+same common listeners. See the [Web guide](7-web.md) for lifecycle, history ownership,
+filters, mappers, samples, and hosting configuration.
+
 ### Common setup
-In the common code you just need to listen to the deeplinks and treat them as you need. Once the application (Android or iOS) recieves a deeplink it will parse it into a `Deeplink` data class and pass it into the listener. Use the listener that suite your project.
+In common code, listen for deep links and handle them as your application requires.
+Android, iOS, desktop, and Web all deliver the same `DeepLink` model through these listeners.
 
 #### Using Compose
 
