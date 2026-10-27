@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew :rinku-core:iosSimulatorArm64Test :rinku-compose-ext:compileKotlinIosSimulatorArm64
       - name: Upload test reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: desktop-tests-${{ matrix.os }}
           path: rinku-core/build/reports/tests/jvmTest
