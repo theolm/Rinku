@@ -1,0 +1,1086 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://theolm.github.io/Rinku/api-reference/">
+      
+      
+        <link rel="prev" href="../7-web/">
+      
+      
+        <link rel="next" href="../minimal-examples/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Public API reference - Rinku Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Merriweather Sans";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#public-api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Rinku Documentation" class="md-header__button md-logo" aria-label="Rinku Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rinku Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Public API reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Rinku Documentation" class="md-nav__button md-logo" aria-label="Rinku Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rinku Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Rinku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-firing-internal-deeplink/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firing Internal Deeplink
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-type-safe-parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type-safe parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-internal-deeplink-filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Link Filters and Mappers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-demonstrative-samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demonstrative Samples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desktop support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web (Kotlin/JS and Kotlin/Wasm)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public API reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Public API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dispatch-and-listening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch and listening
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filters-and-mappers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters and mappers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializable-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serializable query parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM desktop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimal-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verified integration examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dispatch-and-listening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch and listening
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filters-and-mappers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters and mappers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serializable-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serializable query parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM desktop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="public-api-reference">Public API reference<a class="headerlink" href="#public-api-reference" title="Permanent link">&para;</a></h1>
+<p>This reference describes the source on <code>main</code>, which may include unreleased changes.
+Check the documentation and sources at the tag matching your Maven dependency before
+using a newly added API or platform. Install <code>dev.theolm:rinku:&lt;version&gt;</code> and, for
+Compose, <code>dev.theolm:rinku-compose-ext:&lt;version&gt;</code> at the same version.</p>
+<p>Signatures below omit implementation details. See <a href="../minimal-examples/">verified examples</a>
+for executable code and the <a href="../1-setup/">setup guide</a> for Gradle and platform registration.</p>
+<h2 id="shared-model">Shared model<a class="headerlink" href="#shared-model" title="Permanent link">&para;</a></h2>
+<p>Import <code>dev.theolm.rinku.DeepLink</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DeepLink</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">data</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clock</span><span class="p">.</span><span class="na">System</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">toEpochMilliseconds</span><span class="p">(),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>Clock</code> is <code>kotlin.time.Clock</code>. Construction parses the URL immediately using Ktor;
+malformed input can throw. The timestamp is creation time in Unix epoch milliseconds,
+not the time the OS received the link. The original string remains in <code>data</code>.</p>
+<p>Read-only properties:</p>
+<ul>
+<li><code>schema: String</code>: protocol name. The API spelling is <strong>schema</strong>, not <code>scheme</code>.</li>
+<li><code>host: String</code>: parsed host.</li>
+<li><code>encodedPath: String</code>: percent-encoded path.</li>
+<li><code>pathSegments: List&lt;String&gt;</code>: decoded path segments, excluding blank segments.</li>
+<li><code>encodedQuery: String</code>: encoded query, without the leading <code>?</code>.</li>
+<li><code>queryParameterNames: Set&lt;String&gt;</code>: query keys.</li>
+<li><code>parameters: Map&lt;String, String&gt;</code>: decoded query values. Repeated keys collapse to
+  one map entry; the last flattened value wins.</li>
+</ul>
+<p>The fragment is retained in <code>data</code>, but has no dedicated public property and is not
+interpreted as a route. Parsing is not validation or authorization of a route.</p>
+<h2 id="dispatch-and-listening">Dispatch and listening<a class="headerlink" href="#dispatch-and-listening" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.Rinku</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.listenForDeepLinks</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">Rinku</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handleDeepLink</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handleDeepLink</span><span class="p">(</span>
+<span class="w">        </span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">applyFilter</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="n">applyMapper</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="p">}</span>
+
+<span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">listenForDeepLinks</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">DeepLink</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">):</span><span class="w"> </span><span class="kt">Unit</span>
+</code></pre></div>
+<p>These are existing library declarations, not functions to declare in your app.</p>
+<ul>
+<li>Internal dispatch bypasses filters and mappers unless their flags are enabled.</li>
+<li>Filtering happens before mapping. Rejection returns without dispatching.</li>
+<li>An enabled but unconfigured filter/mapper throws <code>IllegalStateException</code> when that
+  step is reached. Filter and mapper exceptions propagate to the caller.</li>
+<li>Parsing and emission run asynchronously on <code>Dispatchers.Main</code>. A successful return
+  is not confirmation of parsing or navigation; asynchronous failures are not caught
+  by a <code>try/catch</code> around <code>handleDeepLink</code>.</li>
+<li>Mobile/internal dispatch keeps one pending value, not a FIFO. Rapid dispatches can
+  overwrite an unconsumed value. Desktop/Web adapter events instead use a shared FIFO
+  of up to 64 pending platform links; overflow rejects the newest event.</li>
+<li>Use one logical listener. Links are consumed once, not broadcast. A pending
+  mobile/internal value is consumed before queued platform links.</li>
+<li><code>listenForDeepLinks</code> stays suspended while collecting. Own its coroutine scope and
+  cancel it with the UI/application lifecycle. Callbacks run in the collector&rsquo;s
+  context; exceptions escape collection. Dispatch to your UI thread as needed.</li>
+</ul>
+<p>For Compose, import <code>dev.theolm.rinku.compose.ext.DeepLinkListener</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">DeepLinkListener</span><span class="p">(</span><span class="n">listener</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">DeepLink</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">)</span>
+</code></pre></div>
+<p>This starts collection with <code>LaunchedEffect(Unit)</code>, cancels when it leaves composition,
+and uses the latest callback without restarting collection on ordinary recomposition.
+It does not initialize a platform adapter or navigate automatically.</p>
+<h2 id="filters-and-mappers">Filters and mappers<a class="headerlink" href="#filters-and-mappers" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.models.DeepLinkFilter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.models.DeepLinkMapper</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">DeepLinkFilter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">isValid</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nc">DeepLinkMapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Supply these during platform initialization. Filters see the original external URL;
+mappers return the URL passed to the shared parser. They do not register URL schemes
+or authenticate senders. See <a href="../4-internal-deeplink-filter/">filters and mappers</a>.</p>
+<h2 id="serializable-query-parameters">Serializable query parameters<a class="headerlink" href="#serializable-query-parameters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.getParameter</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.models.DeepLinkParam</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">kotlinx.serialization.KSerializer</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DeepLink</span><span class="p">.</span><span class="nf">getParameter</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">kSerializer</span><span class="p">:</span><span class="w"> </span><span class="n">KSerializer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">):</span><span class="w"> </span><span class="n">T</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">DeepLinkParam</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">kSerializer</span><span class="p">:</span><span class="w"> </span><span class="n">KSerializer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">serialize</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="c1">// Additional members of the existing Rinku object:</span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">Rinku</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">buildUrl</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="k">vararg</span><span class="w"> </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkParam</span><span class="o">&lt;*&gt;</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">buildUrl</span><span class="p">(</span>
+<span class="w">        </span><span class="n">schema</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">host</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">path</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="k">vararg</span><span class="w"> </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkParam</span><span class="o">&lt;*&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Configure the kotlinx.serialization plugin and JSON dependency in your module.
+<code>getParameter</code> uses the default <code>Json</code> configuration, throws <code>IllegalArgumentException</code>
+for a missing key, and throws a deserialization exception for an incompatible value.
+There is no nullable lookup overload or configurable <code>Json</code> instance.</p>
+<p><code>DeepLinkParam.serialize()</code> returns JSON, <strong>not percent-encoded JSON</strong>. <code>buildUrl</code>
+concatenates the supplied strings and serialized parameters; it does not validate or
+escape them. Use a base URL without a query or fragment. The component overload adds
+<code>/</code> before a non-null path, so pass <code>second/third</code>, not <code>/second/third</code>. Percent-encode
+query keys and values when constructing externally delivered URLs, especially values
+containing <code>&amp;</code>, <code>+</code>, <code>#</code>, or other URL delimiters. See <a href="../3-type-safe-parameters/">type-safe parameters</a>.</p>
+<h2 id="android">Android<a class="headerlink" href="#android" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.RinkuInit</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">dev.theolm.rinku.treatAndFireDeepLink</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">.</span><span class="nf">RinkuInit</span><span class="p">(</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="n">Intent</span><span class="p">.</span><span class="nf">treatAndFireDeepLink</span><span class="p">(</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>ComponentActivity</code> is <code>androidx.activity.ComponentActivity</code>; <code>Intent</code> is
+<code>android.content.Intent</code>. Call <code>RinkuInit</code> once in <code>onCreate</code>. It handles the initial
+intent and listens for new intents, removing its listener on destruction. The intent
+extension processes <code>dataString</code> when present, applying filter then mapper. Exceptions
+from these steps propagate; final parsing uses asynchronous shared dispatch.</p>
+<p>Alternatively, import <code>dev.theolm.rinku.compose.ext.Rinku</code> and call the activity extension:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">.</span><span class="nf">Rinku</span><span class="p">(</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nd">@Composable</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Use it inside the activity&rsquo;s <code>setContent</code>, instead of <code>RinkuInit</code>. It owns the new-intent
+listener for the composition. Keep configuration stable: the listener is installed with
+<code>DisposableEffect(Unit)</code>. The initial intent is processed in the composable body, so
+do not treat recomposition as a guaranteed one-time initialization boundary.</p>
+<h2 id="ios">iOS<a class="headerlink" href="#ios" title="Permanent link">&para;</a></h2>
+<p>Import <code>dev.theolm.rinku.RinkuIos</code> in Kotlin, or the exported shared framework in Swift.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">RinkuIos</span><span class="p">(</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDeepLinkReceived</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDeepLinkReceived</span><span class="p">(</span><span class="n">userActivity</span><span class="p">:</span><span class="w"> </span><span class="n">NSUserActivity</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>NSUserActivity</code> is <code>platform.Foundation.NSUserActivity</code>. Keep an adapter in your
+AppDelegate/SceneDelegate and forward the corresponding URL events. The activity
+overload accepts only <code>NSUserActivityTypeBrowsingWeb</code> activities with a webpage URL.
+Both overloads filter, map, and use shared asynchronous dispatch. There is no <code>start</code>
+or <code>close</code> method. See <a href="../1-setup/#ios-setup">iOS setup</a> for framework export and Swift calls.</p>
+<h2 id="jvm-desktop">JVM desktop<a class="headerlink" href="#jvm-desktop" title="Permanent link">&para;</a></h2>
+<p>Import <code>dev.theolm.rinku.RinkuDesktop</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">RinkuDesktop</span><span class="p">(</span>
+<span class="w">    </span><span class="n">applicationId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">schemes</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onError</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AutoCloseable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">StartResult</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">PRIMARY</span><span class="p">,</span><span class="w"> </span><span class="n">FORWARDED</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyArray</span><span class="p">()):</span><span class="w"> </span><span class="n">StartResult</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDeepLinkReceived</span><span class="p">(</span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Initialize before creating windows; keep the adapter alive until application shutdown.
+Use a stable, nonblank application ID and a nonempty set of valid schemes. Invalid
+constructor arguments throw <code>IllegalArgumentException</code>. <code>start</code> returns <code>PRIMARY</code> or
+<code>FORWARDED</code>; a forwarded process should return without opening a UI. Repeated starts
+return the original result. Closing is idempotent; starting after close throws
+<code>IllegalStateException</code>. Startup/IPC failures throw rather than opening a second instance.</p>
+<p>Only syntactically valid absolute URIs matching configured schemes are accepted.
+Unsupported/invalid inputs and inputs over 16,384 UTF-16 code units are ignored; more
+than 64 accepted startup URLs throws <code>IllegalArgumentException</code>. Filtering, mapping,
+and queueing run on the receiving thread. Mapping, parsing, overflow, and incoming IPC
+errors go to <code>onError</code>; keep it non-throwing. Scheme registration and window focus are
+application responsibilities. See the <a href="../6-desktop/">desktop guide</a> for IPC and packaging.</p>
+<h2 id="web">Web<a class="headerlink" href="#web" title="Permanent link">&para;</a></h2>
+<p>Import <code>dev.theolm.rinku.RinkuWeb</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">RinkuWeb</span><span class="p">(</span>
+<span class="w">    </span><span class="n">captureInitialUrl</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onError</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">start</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">close</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Start before creating the UI and close on disposal. Only one adapter can be active per
+page. Repeated starts do nothing; closing is idempotent and leaves queued events intact.
+A closed adapter cannot restart. Starting after close or while another adapter owns
+the page throws <code>IllegalStateException</code>. Filter/mapper, parsing, and overflow errors go
+to <code>onError</code>; keep it non-throwing. Initialization/ownership errors throw to the caller.</p>
+<p>The adapter receives the full initial URL (unless disabled) and subsequent <code>popstate</code>
+events. It does not intercept <code>pushState</code>/<code>replaceState</code>, observe <code>hashchange</code>, write
+history, or remove deployment prefixes. Hosting must provide an SPA fallback.</p>
+<p>Alternatively, import <code>dev.theolm.rinku.compose.ext.Rinku</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">Rinku</span><span class="p">(</span>
+<span class="w">    </span><span class="n">captureInitialUrl</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkFilter</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkFilter?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deepLinkMapper</span><span class="p">:</span><span class="w"> </span><span class="n">DeepLinkMapper?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onError</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">content</span><span class="p">:</span><span class="w"> </span><span class="nd">@Composable</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>The Web wrapper owns an adapter with <code>DisposableEffect</code>. Changing capture/filter/mapper
+configuration replaces it and can capture the current URL again; changing <code>onError</code>
+alone does not. Do not combine it with manual initialization. This is a Web-only
+top-level wrapper, not a shared wrapper for iOS or desktop. See the <a href="../7-web/">Web guide</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../7-web/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Web (Kotlin/JS and Kotlin/Wasm)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Web (Kotlin/JS and Kotlin/Wasm)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../minimal-examples/" class="md-footer__link md-footer__link--next" aria-label="Next: Verified integration examples">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Verified integration examples
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "content.code.annotations"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

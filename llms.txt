@@ -1,0 +1,33 @@
+# Rinku
+
+> Rinku is a Kotlin Multiplatform deep-link handling library for Android, iOS, JVM desktop (macOS, Windows, and Linux), and Web (Kotlin/JS and Kotlin/Wasm browsers). It delivers a shared DeepLink model to application-owned navigation, with optional filters, mappers, and serializable query parameters.
+
+The documentation site is https://theolm.github.io/Rinku/. The Markdown links below track the repository's main branch, not a specific Maven release. Verify that an API and platform target are available in the version used by the application; main may contain unreleased changes. For release-specific behavior, inspect the corresponding repository tag and its documentation.
+
+Maven Central coordinates are `dev.theolm:rinku:<version>` for the core library and `dev.theolm:rinku-compose-ext:<version>` for optional Compose integration. Use the same version for both modules. The core source module is named `rinku-core`, but the published core artifact is `rinku`.
+
+Integration notes:
+
+- Rinku is not a navigation library or Web router. The application interprets links and updates its navigation stack.
+- Initialize the appropriate platform adapter and use one logical shared listener: the suspending `listenForDeepLinks` function or the Compose `DeepLinkListener`.
+- Android uses `ComponentActivity.RinkuInit` or the `ComponentActivity.Rinku` Compose extension. iOS uses `RinkuIos`; export the core dependency from the shared framework for Swift access.
+- Supported iOS targets are `iosArm64` and `iosSimulatorArm64`, not `iosX64`. Android requires API 23 or later; JVM desktop requires Java 17 or later.
+- Desktop uses `RinkuDesktop` before creating windows. URL scheme registration belongs to the installer; the adapter provides single-instance forwarding.
+- Web uses `RinkuWeb` or the Web Compose `Rinku` wrapper, not both. It receives the initial URL and `popstate`; it does not write history or implement hash routing. SPA hosting and history updates belong to the application.
+- External links are filtered before mapping. `Rinku.handleDeepLink(url)` bypasses both by default; enabling `applyFilter` or `applyMapper` requires the corresponding object to be configured.
+- Platform registration is still required. Treat incoming links as untrusted input; filters do not authenticate senders or replace authorization checks.
+
+## Documentation
+
+- [Overview and quick start](https://raw.githubusercontent.com/theolm/Rinku/main/README.md): Dependencies, supported platforms, Android initialization, and shared Compose listening.
+- [Setup](https://raw.githubusercontent.com/theolm/Rinku/main/docs/1-setup.md): Gradle dependencies, iOS framework export, Android and iOS adapters, and shared listeners with or without Compose.
+- [Internal deep links](https://raw.githubusercontent.com/theolm/Rinku/main/docs/2-firing-internal-deeplink.md): Programmatic dispatch with `Rinku.handleDeepLink`, optional filtering and mapping, and configuration errors.
+- [Type-safe parameters](https://raw.githubusercontent.com/theolm/Rinku/main/docs/3-type-safe-parameters.md): Serialization setup, `DeepLink.getParameter`, `DeepLinkParam`, and URL building and encoding limitations.
+- [Filters and mappers](https://raw.githubusercontent.com/theolm/Rinku/main/docs/4-internal-deeplink-filter.md): Validation and transformation examples, initialization, processing order, and security boundaries.
+- [Desktop guide](https://raw.githubusercontent.com/theolm/Rinku/main/docs/6-desktop.md): Adapter lifecycle, startup arguments, single-instance IPC, queue limits, native scheme registration, packaging, and verification.
+- [Web guide](https://raw.githubusercontent.com/theolm/Rinku/main/docs/7-web.md): JS/Wasm lifecycle, Compose integration, browser history ownership, deployment prefixes, SPA hosting, and tests.
+
+## Optional
+
+- [Navigation samples](https://raw.githubusercontent.com/theolm/Rinku/main/docs/5-demonstrative-samples.md): Links to runnable Voyager and Decompose integrations.
+- [Source repository](https://github.com/theolm/Rinku): Implementation, tests, platform samples, and release tags.
