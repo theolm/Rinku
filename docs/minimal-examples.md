@@ -88,10 +88,10 @@ Verify Swift integration and cold/warm native URL delivery in Xcode before shipp
 Initialize before creating windows, return immediately when forwarding to a primary
 instance, and close the adapter after the UI exits. `App` is the shared root above.
 
-[Desktop source](https://github.com/theolm/Rinku/blob/main/samples/voyager/desktopApp/src/jvmMain/kotlin/main.kt)
+[Desktop source](https://github.com/theolm/Rinku/blob/main/samples/voyager/desktopApp/src/jvmMain/kotlin/Main.kt)
 
 ```kotlin
---8<-- "samples/voyager/desktopApp/src/jvmMain/kotlin/main.kt"
+--8<-- "samples/voyager/desktopApp/src/jvmMain/kotlin/Main.kt"
 ```
 
 ```shell
